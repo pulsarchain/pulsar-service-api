@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.ImGroupMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.ImGroup">
+        <!--@mbg.generated-->
+        <!--@Table im_group-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="group_name" jdbcType="VARCHAR" property="groupName"/>
+        <result column="group_notice" jdbcType="VARCHAR" property="groupNotice"/>
+        <result column="group_head" jdbcType="VARCHAR" property="groupHead"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, group_name, group_notice, group_head, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from im_group
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByGroupId" resultType="com.bosha.user.api.dto.ImGroupWebDto">
+        select id,group_name groupName,group_notice groupNotice, group_head groupHead, create_time createTime ,
+        if(address=#{address},1,0) as owner,(select count(*) from im_group_member m where m.group_id=#{groupId}) as number
+        from im_group where id = #{groupId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from im_group
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImGroup"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_group (address, group_name, group_notice,
+        group_head, create_time)
+        values (#{address,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, #{groupNotice,jdbcType=VARCHAR},
+        #{groupHead,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImGroup"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="groupName != null">
+                group_name,
+            </if>
+            <if test="groupNotice != null">
+                group_notice,
+            </if>
+            <if test="groupHead != null">
+                group_head,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null">
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupNotice != null">
+                #{groupNotice,jdbcType=VARCHAR},
+            </if>
+            <if test="groupHead != null">
+                #{groupHead,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.ImGroup">
+        <!--@mbg.generated-->
+        update im_group
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null">
+                group_name = #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupNotice != null">
+                group_notice = #{groupNotice,jdbcType=VARCHAR},
+            </if>
+            <if test="groupHead != null">
+                group_head = #{groupHead,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.ImGroup">
+        <!--@mbg.generated-->
+        update im_group
+        set address = #{address,jdbcType=VARCHAR},
+        group_name = #{groupName,jdbcType=VARCHAR},
+        group_notice = #{groupNotice,jdbcType=VARCHAR},
+        group_head = #{groupHead,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_group
+        (address, group_name, group_notice, group_head, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.groupName,jdbcType=VARCHAR}, #{item.groupNotice,jdbcType=VARCHAR},
+            #{item.groupHead,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksOrgMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksOrg">
+        <!--@mbg.generated-->
+        <!--@Table sparks_org-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="contact_number" jdbcType="VARCHAR" property="contactNumber"/>
+        <result column="contact_address" jdbcType="VARCHAR" property="contactAddress"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, `status`, `name`, category, logo, start_time, contact_number, contact_address,
+        intro, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_org
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sparks_org
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.SparksOrg"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_org
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="logo != null">
+                logo,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="contactNumber != null">
+                contact_number,
+            </if>
+            <if test="contactAddress != null">
+                contact_address,
+            </if>
+            <if test="intro != null">
+                intro,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contactNumber != null">
+                #{contactNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="contactAddress != null">
+                #{contactAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="intro != null">
+                #{intro,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksOrg">
+        <!--@mbg.generated-->
+        update sparks_org
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contactNumber != null">
+                contact_number = #{contactNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="contactAddress != null">
+                contact_address = #{contactAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="intro != null">
+                intro = #{intro,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sparks_org
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.status != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="category = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.category != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.category,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="logo = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.logo != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.logo,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="start_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.startTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.startTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="contact_number = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.contactNumber != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.contactNumber,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="contact_address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.contactAddress != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.contactAddress,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="intro = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.intro != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.intro,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_org
+        (address, `status`, `name`, category, logo, start_time, contact_number, contact_address,
+        intro, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR},
+            #{item.category,jdbcType=VARCHAR}, #{item.logo,jdbcType=VARCHAR}, #{item.startTime,jdbcType=TIMESTAMP},
+            #{item.contactNumber,jdbcType=VARCHAR}, #{item.contactAddress,jdbcType=VARCHAR},
+            #{item.intro,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_org where address = #{address}
+    </select>
+    <select id="list" resultType="com.bosha.dapp.api.dto.OrgListDto">
+        select so.logo,
+        so.name,
+        so.category,
+        so.address,
+        so.id,
+        so.intro,
+        (select count(*) from sparks_star ss where ss.address = so.address and ss.status in (3, 4)) starNum,
+        (select count(*) from sparks_activity sa where sa.address = so.address ) activityNum,
+        if((select count(*) from sparks_org_follow sof where sof.address = #{address}) = 0, 0, 1) follow
+        from sparks_org so
+        where 1=1
+        <if test="category != null and category != ''">
+            and so.category = #{category}
+        </if>
+        <if test="name != null and name != ''">
+            and so.name like concat('%',#{name},'%')
+        </if>
+        order by starNum desc
+    </select>
+    <select id="my" resultType="com.bosha.dapp.api.dto.OrgListDto">
+        select so.logo,
+               so.name,
+               so.category,
+               so.address,
+               so.id,
+               so.intro,
+               (select count(*) from sparks_star ss where ss.address = so.address and ss.status in (3, 4)) starNum,
+               (select count(*) from sparks_activity sa where sa.address = so.address)                     activityNum,
+               if((select count(*) from sparks_org_follow sof where sof.address = #{address}) = 0, 0, 1)   follow
+        from sparks_org so
+        where so.address = #{address}
+        order by create_time desc
+    </select>
+    <select id="myFollow" resultType="com.bosha.dapp.api.dto.OrgListDto">
+        select so.logo,
+        so.name,
+        so.category,
+        so.address,
+        so.id,
+        so.intro,
+        (select count(*) from sparks_star ss where ss.address = so.address and ss.status in (3, 4)) starNum,
+        (select count(*) from sparks_activity sa where sa.address = so.address)                     activityNum,
+        if((select count(*) from sparks_org_follow sof where sof.address = #{address}) = 0, 0, 1)   follow
+        from sparks_org_follow sof
+                 left join sparks_org so on so.id = sof.org_id
+        where sof.address = #{address}
+        order by sof.create_time desc
+    </select>
+</mapper>

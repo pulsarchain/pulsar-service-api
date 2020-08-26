@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksOrgImgMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksOrgImg">
+        <!--@mbg.generated-->
+        <!--@Table sparks_org_img-->
+        <result column="org_id" jdbcType="BIGINT" property="orgId"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        org_id, url
+    </sql>
+    <insert id="insertSelective" parameterType="com.bosha.dapp.api.entity.SparksOrgImg">
+        <!--@mbg.generated-->
+        insert into sparks_org_img
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orgId != null">
+                #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into sparks_org_img
+        (org_id, url)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orgId,jdbcType=BIGINT}, #{item.url,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    <select id="list" resultType="java.lang.String">
+        select url
+        from sparks_org_img
+        where org_id = #{id}
+    </select>
+</mapper>

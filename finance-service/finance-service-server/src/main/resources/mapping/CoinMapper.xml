@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.finance.server.mapper.CoinMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.finance.api.entity.Coin">
+        <!--@mbg.generated-->
+        <!--@Table coin-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="cn_name" jdbcType="VARCHAR" property="cnName"/>
+        <result column="en_name" jdbcType="VARCHAR" property="enName"/>
+        <result column="symbol_name" jdbcType="VARCHAR" property="symbolName"/>
+        <result column="withdraw_status" jdbcType="INTEGER" property="withdrawStatus"/>
+        <result column="deposit_status" jdbcType="INTEGER" property="depositStatus"/>
+        <result column="withdraw_max" jdbcType="DECIMAL" property="withdrawMax"/>
+        <result column="withdraw_min" jdbcType="DECIMAL" property="withdrawMin"/>
+        <result column="contract_address" jdbcType="VARCHAR" property="contractAddress"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="type_id" jdbcType="BIGINT" property="typeId"/>
+        <result column="fee" jdbcType="DECIMAL" property="fee"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, cn_name, en_name, symbol_name, withdraw_status, deposit_status, withdraw_max,
+        withdraw_min, contract_address, logo, type_id, fee, `status`, sort, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from coin
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from coin
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.finance.api.entity.Coin"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into coin (cn_name, en_name, symbol_name,
+        withdraw_status, deposit_status, withdraw_max,
+        withdraw_min, contract_address, logo,
+        type_id, fee, `status`,
+        sort, create_time, update_time
+        )
+        values (#{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, #{symbolName,jdbcType=VARCHAR},
+        #{withdrawStatus,jdbcType=INTEGER}, #{depositStatus,jdbcType=INTEGER}, #{withdrawMax,jdbcType=DECIMAL},
+        #{withdrawMin,jdbcType=DECIMAL}, #{contractAddress,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR},
+        #{typeId,jdbcType=BIGINT}, #{fee,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER},
+        #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.finance.api.entity.Coin"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into coin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cnName != null">
+                cn_name,
+            </if>
+            <if test="enName != null">
+                en_name,
+            </if>
+            <if test="symbolName != null">
+                symbol_name,
+            </if>
+            <if test="withdrawStatus != null">
+                withdraw_status,
+            </if>
+            <if test="depositStatus != null">
+                deposit_status,
+            </if>
+            <if test="withdrawMax != null">
+                withdraw_max,
+            </if>
+            <if test="withdrawMin != null">
+                withdraw_min,
+            </if>
+            <if test="contractAddress != null">
+                contract_address,
+            </if>
+            <if test="logo != null">
+                logo,
+            </if>
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="fee != null">
+                fee,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cnName != null">
+                #{cnName,jdbcType=VARCHAR},
+            </if>
+            <if test="enName != null">
+                #{enName,jdbcType=VARCHAR},
+            </if>
+            <if test="symbolName != null">
+                #{symbolName,jdbcType=VARCHAR},
+            </if>
+            <if test="withdrawStatus != null">
+                #{withdrawStatus,jdbcType=INTEGER},
+            </if>
+            <if test="depositStatus != null">
+                #{depositStatus,jdbcType=INTEGER},
+            </if>
+            <if test="withdrawMax != null">
+                #{withdrawMax,jdbcType=DECIMAL},
+            </if>
+            <if test="withdrawMin != null">
+                #{withdrawMin,jdbcType=DECIMAL},
+            </if>
+            <if test="contractAddress != null">
+                #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=BIGINT},
+            </if>
+            <if test="fee != null">
+                #{fee,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.finance.api.entity.Coin">
+        <!--@mbg.generated-->
+        update coin
+        <set>
+            <if test="cnName != null">
+                cn_name = #{cnName,jdbcType=VARCHAR},
+            </if>
+            <if test="enName != null">
+                en_name = #{enName,jdbcType=VARCHAR},
+            </if>
+            <if test="symbolName != null">
+                symbol_name = #{symbolName,jdbcType=VARCHAR},
+            </if>
+            <if test="withdrawStatus != null">
+                withdraw_status = #{withdrawStatus,jdbcType=INTEGER},
+            </if>
+            <if test="depositStatus != null">
+                deposit_status = #{depositStatus,jdbcType=INTEGER},
+            </if>
+            <if test="withdrawMax != null">
+                withdraw_max = #{withdrawMax,jdbcType=DECIMAL},
+            </if>
+            <if test="withdrawMin != null">
+                withdraw_min = #{withdrawMin,jdbcType=DECIMAL},
+            </if>
+            <if test="contractAddress != null">
+                contract_address = #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=BIGINT},
+            </if>
+            <if test="fee != null">
+                fee = #{fee,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.finance.api.entity.Coin">
+        <!--@mbg.generated-->
+        update coin
+        set cn_name = #{cnName,jdbcType=VARCHAR},
+        en_name = #{enName,jdbcType=VARCHAR},
+        symbol_name = #{symbolName,jdbcType=VARCHAR},
+        withdraw_status = #{withdrawStatus,jdbcType=INTEGER},
+        deposit_status = #{depositStatus,jdbcType=INTEGER},
+        withdraw_max = #{withdrawMax,jdbcType=DECIMAL},
+        withdraw_min = #{withdrawMin,jdbcType=DECIMAL},
+        contract_address = #{contractAddress,jdbcType=VARCHAR},
+        logo = #{logo,jdbcType=VARCHAR},
+        type_id = #{typeId,jdbcType=BIGINT},
+        fee = #{fee,jdbcType=DECIMAL},
+        `status` = #{status,jdbcType=INTEGER},
+        sort = #{sort,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="findCoinPageInfo" resultType="com.bosha.finance.api.dto.response.CoinListDto">
+        select id, cn_name cnName, en_name enName, symbol_name symbolName,
+        withdraw_status withdrawStatus, deposit_status depositStatus, withdraw_max withdrawMax,
+        withdraw_min withdrawMin, contract_address contractAddress, logo, type_id typeId, fee, `status`, sort,
+        d.value typeName,create_time createTime
+        from coin c
+        left join dict d on c.type_id = d.id
+        <where>
+            <if test="cnName != null">
+                and c.cn_name LIKE CONCAT('%', #{cnName}, '%')
+            </if>
+            <if test="typeId != null">
+                and c.type_id = #{typeId}
+            </if>
+            <if test="status != null">
+                and c.status = #{status}
+            </if>
+            <if test="symbolName != null">
+                and c.symbol_name LIKE CONCAT('%', #{symbolName}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="findAddressPool" resultType="com.bosha.finance.api.dto.response.AddressPoolListDto">
+        select id,c.cn_name cnName, symbol_name symbolName,(select count(id) from address_pool where status = 0) number
+        from coin c
+    </select>
+    <select id="selectAllCoinList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from coin
+    </select>
+    <select id="findCoinAssetByUserId" resultType="com.bosha.finance.api.dto.response.CoinAssetListDto">
+        select c.id,c.en_name enName,c.symbol_name symbolName,
+        c.withdraw_status withdrawStatus,c.deposit_status depositStatus,
+        a.balance,a.frozen_balance frozenBalance
+        from coin c left join asset a on a.coin_id = c.id
+        where a.user_id = #{userId} and c.status = 1
+    </select>
+    <select id="findWithdrawCoin" resultType="com.bosha.finance.api.dto.response.CoinDetailListDto">
+        select c.id,c.withdraw_min withdrawMin,c.symbol_name symbolName,c.withdraw_max withdrawMax,c.logo,c.fee
+        from coin c
+        where c.withdraw_status = 1 and c.status =1 order by sort asc,create_time desc
+    </select>
+    <select id="findChargingCoin" resultType="com.bosha.finance.api.dto.response.CoinDetailListDto">
+       select c.id,c.withdraw_min withdrawMin,c.symbol_name symbolName,c.withdraw_max withdrawMax,c.logo,c.fee
+        from coin c
+        where c.deposit_status = 1 and c.status =1  order by sort asc,create_time desc
+    </select>
+    <select id="selectCoinBySymbol" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from coin
+        where symbol_name = #{symbol}
+    </select>
+</mapper>

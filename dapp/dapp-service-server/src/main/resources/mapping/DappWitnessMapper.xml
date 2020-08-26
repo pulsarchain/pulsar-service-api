@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.DappWitnessMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.DappWitness">
+        <!--@mbg.generated-->
+        <!--@Table dapp_witness-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="dapp_id" jdbcType="BIGINT" property="dappId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="auxiliary_address" jdbcType="VARCHAR" property="auxiliaryAddress"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, dapp_id, address, auxiliary_address, money, hash, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_witness
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from dapp_witness
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.DappWitness"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dapp_witness
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dappId != null">
+                dapp_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="auxiliaryAddress != null">
+                auxiliary_address,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dappId != null">
+                #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="auxiliaryAddress != null">
+                #{auxiliaryAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.DappWitness">
+        <!--@mbg.generated-->
+        update dapp_witness
+        <set>
+            <if test="dappId != null">
+                dapp_id = #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="auxiliaryAddress != null">
+                auxiliary_address = #{auxiliaryAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="countDuplicate" resultType="int">
+        select count(*)
+        from dapp_witness dw
+        where dw.address = #{address}
+          and dw.auxiliary_address = #{auxiliaryAddress}
+          and dw.dapp_id = #{dappId}
+    </select>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_witness dw
+        where dw.dapp_id = #{dappId}
+        and dw.address = #{address}
+        and dw.money is not null
+        and dw.hash is not null
+        order by dw.update_time
+    </select>
+    <select id="getByAddressAndWitness" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_witness
+        where address = #{to}
+        and auxiliary_address = #{from}
+        and money is not null
+        and hash is not null
+        limit 1
+    </select>
+    <select id="countWitnessSuccess" resultType="int">
+        select count(*) from dapp_witness
+        where dapp_id = #{dappId}
+        and money is not null
+        and hash is not null
+    </select>
+</mapper>

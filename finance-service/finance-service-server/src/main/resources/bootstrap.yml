@@ -1,0 +1,21 @@
+server:
+  port: 8014
+spring:
+  profiles:
+    active: dev
+  application:
+    name: finance-service
+  redis:
+    database: 1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.31.125:8848
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        shared-dataids: common.yml
+        file-extension: yml
+        refreshableDataids: ${spring.cloud.nacos.config.shared-dataids}
+  swagger.basePackges: com.bosha.finance.server.controller
+  main:
+    allow-bean-definition-overriding: true

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksActivityJoinMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksActivityJoin">
+        <!--@mbg.generated-->
+        <!--@Table sparks_activity_join-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="activity_id" jdbcType="BIGINT" property="activityId"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="with_friend" jdbcType="INTEGER" property="withFriend"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <resultMap id="DETAIL" type="com.bosha.dapp.api.dto.ActivityDetailDto">
+        <result column="joinNum" property="joinNum"/>
+        <result column="interestNum" property="interestNum"/>
+        <result column="collect" property="collect"/>
+        <result column="join" property="join"/>
+        <result column="interest" property="interest"/>
+        <collection property="headImgs" ofType="java.lang.String" javaType="java.util.ArrayList" column="id"
+                    select="com.bosha.dapp.server.mapper.SparksActivityImgMapper.list"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, activity_id, `type`, with_friend, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_activity_join
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sparks_activity_join
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.dapp.api.entity.SparksActivityJoin" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_activity_join
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="withFriend != null">
+                with_friend,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="activityId != null">
+                #{activityId,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="withFriend != null">
+                #{withFriend,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksActivityJoin">
+        <!--@mbg.generated-->
+        update sparks_activity_join
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="activityId != null">
+                activity_id = #{activityId,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="withFriend != null">
+                with_friend = #{withFriend,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sparks_activity_join
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="activity_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.activityId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.activityId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.type != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="with_friend = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.withFriend != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.withFriend,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_activity_join
+        (address, activity_id, `type`, with_friend, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.activityId,jdbcType=BIGINT}, #{item.type,jdbcType=INTEGER},
+            #{item.withFriend,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="joinAddress" resultType="java.lang.String">
+        select u.head_img
+        from sparks_activity_join saj
+                 left join user u on saj.address = u.address
+        where saj.activity_id = #{id}
+          and saj.type = 2
+        order by u.create_time
+        limit 10
+    </select>
+    <select id="detail" resultMap="DETAIL">
+        select #{id}                                                id,
+               ifnull(sum(IF(saj.type = 1, saj.with_friend, 0)), 0) joinNum,
+               ifnull(sum(IF(saj.type = 2, saj.with_friend, 0)), 0) interestNum,
+               if((select count(*) from sparks_favorite sf where sf.address = #{address} and sf.type = 2) = 0, 0,
+                  1)                                                collect,
+               if((select count(*)
+                   from sparks_activity_join a
+                   where a.address = #{address}
+                     and a.type = 2
+                     and a.activity_id = #{id}), 0, 1)              `join`,
+               if((select count(*)
+                   from sparks_activity_join a
+                   where a.address = #{address}
+                     and a.type = 1
+                     and a.activity_id = #{id}), 0, 1)              `interest`
+        from sparks_activity_join saj
+        where activity_id = #{id}
+
+    </select>
+    <delete id="deleteByAddressAndId">
+        delete
+        from sparks_activity_join
+        where address = #{address}
+          and activity_id = #{id}
+          and type = #{type}
+    </delete>
+</mapper>

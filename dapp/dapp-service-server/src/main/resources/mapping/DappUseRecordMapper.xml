@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.DappUseRecordMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.DappUseRecord">
+    <!--@mbg.generated-->
+    <!--@Table dapp_use_record-->
+    <id column="address" jdbcType="VARCHAR" property="address" />
+    <id column="dapp_id" jdbcType="BIGINT" property="dappId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    address, dapp_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from dapp_use_record
+    where address = #{address,jdbcType=VARCHAR}
+      and dapp_id = #{dappId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    <!--@mbg.generated-->
+    delete from dapp_use_record
+    where address = #{address,jdbcType=VARCHAR}
+      and dapp_id = #{dappId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="com.bosha.dapp.api.entity.DappUseRecord">
+    <!--@mbg.generated-->
+    insert into dapp_use_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        address,
+      </if>
+      <if test="dappId != null">
+        dapp_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="dappId != null">
+        #{dappId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.DappUseRecord">
+    <!--@mbg.generated-->
+    update dapp_use_record
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where address = #{address,jdbcType=VARCHAR}
+      and dapp_id = #{dappId,jdbcType=BIGINT}
+  </update>
+</mapper>

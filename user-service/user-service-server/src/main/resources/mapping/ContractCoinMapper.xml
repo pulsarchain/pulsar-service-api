@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.ContractCoinMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.ContractCoin">
+    <!--@mbg.generated-->
+    <!--@Table contract_coin-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_address" jdbcType="VARCHAR" property="userAddress" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="coin_name" jdbcType="VARCHAR" property="coinName" />
+    <result column="short_name" jdbcType="VARCHAR" property="shortName" />
+    <result column="digit" jdbcType="INTEGER" property="digit" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="contract_address" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="hash" jdbcType="VARCHAR" property="hash" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_address, total, coin_name, short_name, digit, logo, `status`, contract_address, 
+    hash, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from contract_coin
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from contract_coin
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ContractCoin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_coin (user_address, total, coin_name, 
+      short_name, digit, logo, 
+      `status`, contract_address, hash, 
+      create_time)
+    values (#{userAddress,jdbcType=VARCHAR}, #{total,jdbcType=DECIMAL}, #{coinName,jdbcType=VARCHAR}, 
+      #{shortName,jdbcType=VARCHAR}, #{digit,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{contractAddress,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ContractCoin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_coin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="coinName != null">
+        coin_name,
+      </if>
+      <if test="shortName != null">
+        short_name,
+      </if>
+      <if test="digit != null">
+        digit,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="contractAddress != null">
+        contract_address,
+      </if>
+      <if test="hash != null">
+        hash,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="coinName != null">
+        #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="digit != null">
+        #{digit,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="contractAddress != null">
+        #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hash != null">
+        #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.ContractCoin">
+    <!--@mbg.generated-->
+    update contract_coin
+    <set>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="coinName != null">
+        coin_name = #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="digit != null">
+        digit = #{digit,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="contractAddress != null">
+        contract_address = #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hash != null">
+        hash = #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.ContractCoin">
+    <!--@mbg.generated-->
+    update contract_coin
+    set user_address = #{userAddress,jdbcType=VARCHAR},
+      total = #{total,jdbcType=DECIMAL},
+      coin_name = #{coinName,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      digit = #{digit,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      contract_address = #{contractAddress,jdbcType=VARCHAR},
+      hash = #{hash,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_coin
+    (user_address, total, coin_name, short_name, digit, logo, `status`, contract_address, 
+      hash, create_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userAddress,jdbcType=VARCHAR}, #{item.total,jdbcType=DECIMAL}, #{item.coinName,jdbcType=VARCHAR}, 
+        #{item.shortName,jdbcType=VARCHAR}, #{item.digit,jdbcType=INTEGER}, #{item.logo,jdbcType=VARCHAR}, 
+        #{item.status,jdbcType=INTEGER}, #{item.contractAddress,jdbcType=VARCHAR}, #{item.hash,jdbcType=VARCHAR}, 
+        #{item.createTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+    <select id="selectByHash" resultType="com.bosha.user.api.entity.ContractCoin">
+
+      select
+      <include refid="Base_Column_List" />
+      from contract_coin
+      where hash = #{hash}
+    </select>
+
+  <select id="list" resultType="com.bosha.user.api.dto.ContractCoinListDto">
+    select id,coin_name coinName,digit,logo,contract_address contractAddress
+    from contract_coin where status = 1
+  </select>
+</mapper>

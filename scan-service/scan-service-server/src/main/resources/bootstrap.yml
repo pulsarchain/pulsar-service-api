@@ -1,0 +1,20 @@
+server:
+  port: 8016
+spring:
+  profiles:
+    active: dev
+  application:
+    name: scan-service
+  redis:
+    database: 7
+  main.allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.3.237:8000
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        shared-dataids: common.yml
+        file-extension: yml
+        refreshableDataids: ${spring.cloud.nacos.config.shared-dataids}
+  swagger.basePackges: com.bosha.scan.server.controller

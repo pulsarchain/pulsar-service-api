@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.DappSlideshowMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.DappSlideshow">
+        <!--@mbg.generated-->
+        <!--@Table dapp_slideshow-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="dapp_id" jdbcType="BIGINT" property="dappId"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="show" jdbcType="INTEGER" property="show"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, url, dapp_id, `type`, `show`, sort, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_slideshow
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from dapp_slideshow
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.DappSlideshow"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dapp_slideshow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="dappId != null">
+                dapp_id,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="show != null">
+                `show`,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="dappId != null">
+                #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="show != null">
+                #{show,jdbcType=INTEGER},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.DappSlideshow">
+        <!--@mbg.generated-->
+        update dapp_slideshow
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="dappId != null">
+                dapp_id = #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="show != null">
+                `show` = #{show,jdbcType=INTEGER},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="list" resultType="com.bosha.dapp.api.dto.DappSlideshowDto">
+        select ds.name, ds.url, ds.dapp_id dappId, ds.type
+        from dapp_slideshow ds
+        where ds.`show` = 1
+        order by ds.sort
+        limit 10
+    </select>
+</mapper>

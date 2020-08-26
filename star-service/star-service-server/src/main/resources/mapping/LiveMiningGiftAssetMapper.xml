@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningGiftAssetMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningGiftAsset">
+        <!--@mbg.generated-->
+        <!--@Table live_mining_gift_asset-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="gift_id" jdbcType="BIGINT" property="giftId"/>
+        <result column="num" jdbcType="INTEGER" property="num"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, gift_id, num, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_gift_asset
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from live_mining_gift_asset
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningGiftAsset" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_gift_asset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="giftId != null">
+                gift_id,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="giftId != null">
+                #{giftId,jdbcType=BIGINT},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningGiftAsset">
+        <!--@mbg.generated-->
+        update live_mining_gift_asset
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="giftId != null">
+                gift_id = #{giftId,jdbcType=BIGINT},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_gift_asset
+        (address, gift_id, num, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.giftId,jdbcType=BIGINT}, #{item.num,jdbcType=INTEGER},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningGiftAsset" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_gift_asset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            address,
+            gift_id,
+            num,
+            create_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{address,jdbcType=VARCHAR},
+            #{giftId,jdbcType=BIGINT},
+            #{num,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            address = #{address,jdbcType=VARCHAR},
+            gift_id = #{giftId,jdbcType=BIGINT},
+            num = #{num,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningGiftAsset" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_gift_asset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="giftId != null">
+                gift_id,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="giftId != null">
+                #{giftId,jdbcType=BIGINT},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="giftId != null">
+                gift_id = #{giftId,jdbcType=BIGINT},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="asset" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_gift_asset a where a.address = #{address}
+    </select>
+    <select id="getByAddressAndGiftId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_gift_asset
+        where address = #{address} and gift_id = #{giftId}
+    </select>
+    <select id="assetDto" resultType="com.bosha.star.api.dto.web.GiftAssetDto">
+        select gift_id id, num
+        from live_mining_gift_asset a
+        where a.address = #{address}
+    </select>
+    <update id="updateGiftNum">
+        update live_mining_gift_asset
+        set num = num - #{num}
+        where id = #{id} and num = #{oldNum}
+    </update>
+</mapper>

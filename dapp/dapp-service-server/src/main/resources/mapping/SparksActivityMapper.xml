@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksActivityMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksActivity">
+        <!--@mbg.generated-->
+        <!--@Table sparks_activity-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="org_id" jdbcType="BIGINT" property="orgId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="num" jdbcType="INTEGER" property="num"/>
+        <result column="contact" jdbcType="VARCHAR" property="contact"/>
+        <result column="vehicle" jdbcType="VARCHAR" property="vehicle"/>
+        <result column="time" jdbcType="TIMESTAMP" property="time"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="area_id" jdbcType="INTEGER" property="areaId"/>
+        <result column="longitude" jdbcType="VARCHAR" property="longitude"/>
+        <result column="latitude" jdbcType="VARCHAR" property="latitude"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="credit_score_min" jdbcType="INTEGER" property="creditScoreMin"/>
+        <result column="credit_score_max" jdbcType="INTEGER" property="creditScoreMax"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <collection property="imgs" ofType="java.lang.String" javaType="java.util.ArrayList" column="id"
+                    select="com.bosha.dapp.server.mapper.SparksActivityImgMapper.list"/>
+    </resultMap>
+    <resultMap id="LIST" type="com.bosha.dapp.api.dto.ActivityListDto">
+        <result column="name" property="name"/>
+        <result column="img" property="img"/>
+        <result column="id" property="id"/>
+        <result column="location" property="location"/>
+        <result column="time" property="time"/>
+        <result column="collect" property="collect"/>
+        <result column="joinNum" property="joinNum"/>
+        <collection property="headImgs" ofType="java.lang.String" column="id" javaType="java.util.ArrayList"
+                    select="com.bosha.dapp.server.mapper.SparksActivityJoinMapper.joinAddress"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, org_id, `status`, `name`, num, contact, vehicle, `time`, `location`,
+        area_id, longitude, latitude, `type`, `desc`, credit_score_min, credit_score_max,
+        hash, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_activity
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sparks_activity
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.dapp.api.entity.SparksActivity" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="contact != null">
+                contact,
+            </if>
+            <if test="vehicle != null">
+                vehicle,
+            </if>
+            <if test="time != null">
+                `time`,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="desc != null">
+                `desc`,
+            </if>
+            <if test="creditScoreMin != null">
+                credit_score_min,
+            </if>
+            <if test="creditScoreMax != null">
+                credit_score_max,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="contact != null">
+                #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicle != null">
+                #{vehicle,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="creditScoreMin != null">
+                #{creditScoreMin,jdbcType=INTEGER},
+            </if>
+            <if test="creditScoreMax != null">
+                #{creditScoreMax,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksActivity">
+        <!--@mbg.generated-->
+        update sparks_activity
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="contact != null">
+                contact = #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicle != null">
+                vehicle = #{vehicle,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                `time` = #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                `desc` = #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="creditScoreMin != null">
+                credit_score_min = #{creditScoreMin,jdbcType=INTEGER},
+            </if>
+            <if test="creditScoreMax != null">
+                credit_score_max = #{creditScoreMax,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sparks_activity
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="org_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.orgId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.orgId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.status != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="num = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.num != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.num,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="contact = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.contact != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.contact,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="vehicle = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.vehicle != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.vehicle,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`time` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.time != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.time,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`location` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.location != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.location,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="area_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.areaId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.areaId,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="longitude = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.longitude != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.longitude,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="latitude = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.latitude != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.latitude,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.type != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`desc` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.desc != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.desc,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="credit_score_min = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.creditScoreMin != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.creditScoreMin,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="credit_score_max = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.creditScoreMax != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.creditScoreMax,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="hash = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.hash != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.hash,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_activity
+        (address, org_id, `status`, `name`, num, contact, vehicle, `time`, `location`, area_id,
+        longitude, latitude, `type`, `desc`, credit_score_min, credit_score_max, hash,
+        create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.orgId,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER},
+            #{item.name,jdbcType=VARCHAR}, #{item.num,jdbcType=INTEGER}, #{item.contact,jdbcType=VARCHAR},
+            #{item.vehicle,jdbcType=VARCHAR}, #{item.time,jdbcType=TIMESTAMP}, #{item.location,jdbcType=VARCHAR},
+            #{item.areaId,jdbcType=INTEGER}, #{item.longitude,jdbcType=VARCHAR}, #{item.latitude,jdbcType=VARCHAR},
+            #{item.type,jdbcType=VARCHAR}, #{item.desc,jdbcType=VARCHAR}, #{item.creditScoreMin,jdbcType=INTEGER},
+            #{item.creditScoreMax,jdbcType=INTEGER}, #{item.hash,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="getOne" resultMap="LIST">
+        select sa.name,
+               sa.id,
+               sa.location,
+               sa.time,
+               (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+               if((select count(*)
+                   from sparks_favorite sf
+                   where sf.address = #{currentUserAddress}
+                     and sf.type = 2) = 0, 0, 1)                                       collect,
+               (select ifnull(sum(saj.with_friend), 0)
+                from sparks_activity_join saj
+                where saj.activity_id = sa.id
+                  and saj.type = 2)                                                    joinNum
+        from sparks_activity sa
+        where sa.address = #{address}
+        order by sa.create_time desc
+        limit 1
+    </select>
+    <select id="list" resultMap="LIST">
+        select sa.name,
+        sa.id,
+        sa.location,
+        sa.time,
+        (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+        if((select count(*)
+        from sparks_favorite sf
+        where sf.address = #{address}
+        and sf.type = 2) = 0, 0, 1) collect,
+        (select ifnull(sum(saj.with_friend),0) from sparks_activity_join saj where saj.activity_id = sa.id and saj.type
+        = 2) joinNum
+        from sparks_activity sa
+        where 1=1
+        <if test="name != null and name != ''">
+            and sa.name like concat('%',#{name},'%')
+        </if>
+        order by
+        <choose>
+            <when test="hot != null and hot ==1">
+                joinNum desc
+            </when>
+            <otherwise>
+                create_time desc
+            </otherwise>
+        </choose>
+    </select>
+    <select id="my" resultMap="LIST">
+        select sa.name,
+               sa.id,
+               sa.location,
+               sa.time,
+               (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+               if((select count(*)
+                   from sparks_favorite sf
+                   where sf.address = #{address}
+                     and sf.type = 2) = 0, 0, 1)                                       collect,
+               (select ifnull(sum(saj.with_friend), 0)
+                from sparks_activity_join saj
+                where saj.activity_id = sa.id
+                  and saj.type = 2)                                                    joinNum
+        from sparks_activity sa
+        where sa.address = #{address}
+        order by sa.create_time desc
+    </select>
+    <select id="myFavorite" resultMap="LIST">
+        select sa.name,
+               sa.id,
+               sa.location,
+               sa.time,
+               (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+               (select ifnull(sum(saj.with_friend), 0)
+                from sparks_activity_join saj
+                where saj.activity_id = sa.id
+                  and saj.type = 2)                                                    joinNum
+        from sparks_favorite sf
+                 left join sparks_activity sa on sf.related_id = sa.id and sf.type = 2
+                 left join sparks_activity_join saj on sa.id = saj.activity_id and saj.type = #{type}
+        order by sf.create_time desc
+    </select>
+    <select id="myFavoriteAll" resultMap="LIST">
+        select sa.name,
+        sa.id,
+        sa.location,
+        sa.time,
+        (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+        (select ifnull(sum(saj.with_friend), 0)
+        from sparks_activity_join saj
+        where saj.activity_id = sa.id
+        and saj.type = 2) joinNum
+        from sparks_favorite sf
+        left join sparks_activity sa on sf.related_id = sa.id and sf.type = 2
+        where 1=1
+        <if test="type != null and type==3">
+            and sa.time &lt; #{now}
+        </if>
+        order by sf.create_time desc
+    </select>
+    <select id="calendar" resultType="com.bosha.dapp.api.dto.ActivityCalendarDto">
+        SELECT DATE_FORMAT(sa.create_time, '%Y-%m-%d') AS date,
+               if(count(*) > 0, 1, 0)                     count
+        FROM (select saj.activity_id from sparks_activity_join saj group by saj.activity_id) tmp
+                 left join sparks_activity sa on tmp.activity_id = sa.id
+        WHERE sa.time between #{startTime} and #{endTime}
+        GROUP BY date
+    </select>
+    <select id="calendarListExpire" resultMap="LIST">
+        select sa.name,
+               sa.id,
+               sa.location,
+               sa.time,
+               (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+               (select ifnull(sum(saj.with_friend), 0)
+                from sparks_activity_join saj
+                where saj.activity_id = sa.id
+                  and saj.type = 2)                                                    joinNum,
+               if((select count(*)
+                   from sparks_favorite sf
+                   where sf.address = #{address}
+                     and sf.type = 2) = 0, 0, 1)                                       collect
+        from sparks_activity sa
+                 left join (select saj.activity_id from sparks_activity_join saj group by saj.activity_id) tmp
+                           on tmp.activity_id = sa.id
+        where sa.time between #{startTime} and #{endTime}
+        order by sa.time desc
+    </select>
+    <select id="calendarList" resultMap="LIST">
+        select sa.name,
+               sa.id,
+               sa.location,
+               sa.time,
+               (select url from sparks_activity_img where activity_id = sa.id limit 1) img,
+               (select ifnull(sum(saj.with_friend), 0)
+                from sparks_activity_join saj
+                where saj.activity_id = sa.id
+                  and saj.type = 2)                                                    joinNum,
+        if((select count(*)
+        from sparks_favorite sf
+        where sf.address = #{address}
+        and sf.type = 2) = 0, 0, 1)                                       collect
+        from sparks_activity sa left join sparks_activity_join s on sa.id = s.activity_id and s.type = #{type}
+        where sa.time between #{startTime} and #{endTime}
+        order by sa.time desc
+    </select>
+</mapper>

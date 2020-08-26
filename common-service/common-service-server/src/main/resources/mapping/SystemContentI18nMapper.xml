@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.SystemContentI18nMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.SystemContentI18n">
+        <!--@mbg.generated-->
+        <!--@Table system_content_i18n-->
+        <result column="sc_id" jdbcType="BIGINT" property="scId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="language" jdbcType="VARCHAR" property="language"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        sc_id, `name`, content, `language`
+    </sql>
+    <insert id="insertSelective" parameterType="com.bosha.common.api.entity.SystemContentI18n">
+        <!--@mbg.generated-->
+        insert into system_content_i18n
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scId != null">
+                sc_id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="language != null">
+                `language`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="scId != null">
+                #{scId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="language != null">
+                #{language,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into system_content_i18n
+        (sc_id, `name`, content, `language`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.scId,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.content,jdbcType=VARCHAR},
+            #{item.language,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from system_content_i18n where sc_id = #{id}
+    </select>
+    <select id="getByScIdAndLanguage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from system_content_i18n where sc_id = #{id} and language = #{language}
+    </select>
+    <update id="update">
+        update system_content_i18n
+        set name    = #{name,jdbcType=VARCHAR},
+            content = #{content}
+        where sc_id = #{scId}
+          and language = #{language}
+    </update>
+</mapper>

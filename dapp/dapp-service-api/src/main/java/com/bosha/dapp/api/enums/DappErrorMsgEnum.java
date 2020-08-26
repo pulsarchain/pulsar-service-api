@@ -1,0 +1,49 @@
+package com.bosha.dapp.api.enums;
+
+import com.bosha.commons.exception.ErrorMsgEnum;
+
+public enum DappErrorMsgEnum implements ErrorMsgEnum {
+
+    /* 10000-19999 */
+
+    WITH_FRIEND_MAX(10000, "WITH_FRIEND_MAX"),
+    SMART_CONTRACT_ADDRESS_ERROR(10001, "SMART_CONTRACT_ADDRESS_ERROR"),
+    AMOUNT_MUST_BE_POSITIVE(10002, "AMOUNT_MUST_BE_POSITIVE"),
+    MONTH_AND_YEAR_REQUIRED(10003, "MONTH_AND_YEAR_REQUIRED"),
+    MONTHLY_MAXIMUM(10004, "MONTHLY_MAXIMUM"),
+    URL_AND_SCHEMA_URL_CAN_NOT_BE_NULL(10005, "URL_AND_SCHEMA_URL_CAN_NOT_BE_NULL"),
+    ADDRESS_ERROR(10006, "ADDRESS_ERROR"),
+    ADDRESS_DUPLICATED(10007, "ADDRESS_DUPLICATED"),
+    SELF_ADDRESS(10008, "SELF_ADDRESS"),
+    WITNESS_LIST_CAN_NOT_BE_NULL(10009, "WITNESS_LIST_CAN_NOT_BE_NULL"),
+    NOT_DAPP_OWNER(10010, "NOT_DAPP_OWNER"),
+    GOODS_SEARCH_FAIL(10011, "GOODS_SEARCH_FAIL"),
+    ONE_TYPE_ONE_ACCOUNT(10012, "ONE_TYPE_ONE_ACCOUNT"),
+    WITNESS_ADDRESS_REPETITION(10013, "WITNESS_ADDRESS_REPETITION"),
+    UN_APPLY_ORG(10014, "UN_APPLY_ORG"),
+    APPLY_ORG_ING(10015, "APPLY_ORG_ING"),
+    PERSON_NUM_LIMIT(10016, "PERSON_NUM_LIMIT"),
+    ALREADY_ORG(10017, "ALREADY_ORG"),
+    ALREADY_REPORTED_DAPP(10018,"ALREADY_REPORTED_DAPP"),
+    DONATE_STUFF_OUT(10019,"DONATE_STUFF_OUT"),
+
+
+    ;
+    private int code;
+    private String msg;
+
+    DappErrorMsgEnum(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    @Override
+    public int getCode() {
+        return this.code;
+    }
+
+    @Override
+    public String getMsg() {
+        return this.msg;
+    }
+}

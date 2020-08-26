@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksFundationMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksFundation">
+    <!--@mbg.generated-->
+    <!--@Table sparks_fundation-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="invest" jdbcType="DECIMAL" property="invest" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="rebate" jdbcType="DECIMAL" property="rebate" />
+    <result column="advice" jdbcType="VARCHAR" property="advice" />
+    <result column="credit_score_min" jdbcType="INTEGER" property="creditScoreMin" />
+    <result column="credit_score_max" jdbcType="INTEGER" property="creditScoreMax" />
+    <result column="hash" jdbcType="VARCHAR" property="hash" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, address, `status`, `name`, contact, logo, invest, `year`, rebate, advice, credit_score_min, 
+    credit_score_max, hash, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sparks_fundation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sparks_fundation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.SparksFundation" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sparks_fundation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        address,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="invest != null">
+        invest,
+      </if>
+      <if test="year != null">
+        `year`,
+      </if>
+      <if test="rebate != null">
+        rebate,
+      </if>
+      <if test="advice != null">
+        advice,
+      </if>
+      <if test="creditScoreMin != null">
+        credit_score_min,
+      </if>
+      <if test="creditScoreMax != null">
+        credit_score_max,
+      </if>
+      <if test="hash != null">
+        hash,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="invest != null">
+        #{invest,jdbcType=DECIMAL},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="rebate != null">
+        #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="advice != null">
+        #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="creditScoreMin != null">
+        #{creditScoreMin,jdbcType=INTEGER},
+      </if>
+      <if test="creditScoreMax != null">
+        #{creditScoreMax,jdbcType=INTEGER},
+      </if>
+      <if test="hash != null">
+        #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksFundation">
+    <!--@mbg.generated-->
+    update sparks_fundation
+    <set>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="invest != null">
+        invest = #{invest,jdbcType=DECIMAL},
+      </if>
+      <if test="year != null">
+        `year` = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="rebate != null">
+        rebate = #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="advice != null">
+        advice = #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="creditScoreMin != null">
+        credit_score_min = #{creditScoreMin,jdbcType=INTEGER},
+      </if>
+      <if test="creditScoreMax != null">
+        credit_score_max = #{creditScoreMax,jdbcType=INTEGER},
+      </if>
+      <if test="hash != null">
+        hash = #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sparks_fundation
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.address != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="contact = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.contact != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.contact,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="logo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logo != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.logo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="invest = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.invest != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.invest,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`year` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.year != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.year,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rebate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rebate != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.rebate,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="advice = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.advice != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.advice,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="credit_score_min = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creditScoreMin != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creditScoreMin,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="credit_score_max = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creditScoreMax != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creditScoreMax,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="hash = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.hash != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.hash,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sparks_fundation
+    (address, `status`, `name`, contact, logo, invest, `year`, rebate, advice, credit_score_min, 
+      credit_score_max, hash, create_time, update_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.address,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR}, 
+        #{item.contact,jdbcType=VARCHAR}, #{item.logo,jdbcType=VARCHAR}, #{item.invest,jdbcType=DECIMAL}, 
+        #{item.year,jdbcType=INTEGER}, #{item.rebate,jdbcType=DECIMAL}, #{item.advice,jdbcType=VARCHAR}, 
+        #{item.creditScoreMin,jdbcType=INTEGER}, #{item.creditScoreMax,jdbcType=INTEGER}, 
+        #{item.hash,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+    <select id="list" resultType="com.bosha.dapp.api.dto.FundationListDto">
+        select sf.id, sf.logo, sf.name, sf.address, sf.invest, sf.year, sf.rebate
+        from sparks_fundation sf
+        where sf.status = 3
+        order by rebate desc, year
+    </select>
+    <select id="my" resultType="com.bosha.dapp.api.dto.FundationListDto">
+        select sf.id, sf.logo, sf.name, sf.address, sf.invest, sf.year, sf.rebate
+        from sparks_fundation sf
+        where sf.address = #{address}
+        order by create_time desc
+    </select>
+</mapper>

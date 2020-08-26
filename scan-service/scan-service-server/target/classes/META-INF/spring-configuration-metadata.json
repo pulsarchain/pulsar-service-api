@@ -1,0 +1,160 @@
+{
+  "groups": [
+    {
+      "name": "scan-service.config",
+      "type": "com.bosha.scan.server.config.ScanServiceConfig",
+      "sourceType": "com.bosha.scan.server.config.ScanServiceConfig"
+    },
+    {
+      "name": "spring.data.mongodb",
+      "type": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "scan-service.config.node",
+      "type": "java.lang.String",
+      "sourceType": "com.bosha.scan.server.config.ScanServiceConfig"
+    },
+    {
+      "name": "scan-service.config.sync-transaction-count",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.bosha.scan.server.config.ScanServiceConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "scan-service.config.web3j",
+      "type": "org.web3j.protocol.Web3j",
+      "sourceType": "com.bosha.scan.server.config.ScanServiceConfig"
+    },
+    {
+      "name": "spring.data.mongodb.address",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties"
+    },
+    {
+      "name": "spring.data.mongodb.always-use-m-beans",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.data.mongodb.authentication-database",
+      "type": "java.lang.String",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties"
+    },
+    {
+      "name": "spring.data.mongodb.connect-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 10000
+    },
+    {
+      "name": "spring.data.mongodb.database",
+      "type": "java.lang.String",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties"
+    },
+    {
+      "name": "spring.data.mongodb.heartbeat-connect-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 20000
+    },
+    {
+      "name": "spring.data.mongodb.heartbeat-frequency",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 10000
+    },
+    {
+      "name": "spring.data.mongodb.heartbeat-socket-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 20000
+    },
+    {
+      "name": "spring.data.mongodb.local-threshold",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 15
+    },
+    {
+      "name": "spring.data.mongodb.max-connection-idle-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.data.mongodb.max-connection-life-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.data.mongodb.max-connections-per-host",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 1000
+    },
+    {
+      "name": "spring.data.mongodb.max-wait-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 30000
+    },
+    {
+      "name": "spring.data.mongodb.min-connections-per-host",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.data.mongodb.min-heartbeat-frequency",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 500
+    },
+    {
+      "name": "spring.data.mongodb.password",
+      "type": "java.lang.String",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties"
+    },
+    {
+      "name": "spring.data.mongodb.server-selection-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 30000
+    },
+    {
+      "name": "spring.data.mongodb.socket-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.data.mongodb.ssl-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.data.mongodb.ssl-invalid-host-name-allowed",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.data.mongodb.threads-allowed-to-block-for-connection-multiplier",
+      "type": "java.lang.Integer",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties",
+      "defaultValue": 5
+    },
+    {
+      "name": "spring.data.mongodb.username",
+      "type": "java.lang.String",
+      "sourceType": "com.bosha.scan.server.config.MongoSettingsProperties"
+    }
+  ],
+  "hints": []
+}

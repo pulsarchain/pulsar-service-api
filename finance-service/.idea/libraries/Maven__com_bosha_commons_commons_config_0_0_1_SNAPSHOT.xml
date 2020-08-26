@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.bosha.commons:commons-config:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bosha/commons/commons-config/0.0.1-SNAPSHOT/commons-config-0.0.1-20200819.131700-109.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bosha/commons/commons-config/0.0.1-SNAPSHOT/commons-config-0.0.1-20200819.131700-109-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bosha/commons/commons-config/0.0.1-SNAPSHOT/commons-config-0.0.1-20200819.131700-109-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

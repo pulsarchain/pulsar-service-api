@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningGiftRecordMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningGiftRecord">
+    <!--@mbg.generated-->
+    <!--@Table live_mining_gift_record-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="system_address" jdbcType="VARCHAR" property="systemAddress" />
+    <result column="to_address" jdbcType="VARCHAR" property="toAddress" />
+    <result column="related_id" jdbcType="BIGINT" property="relatedId" />
+    <result column="gift_id" jdbcType="BIGINT" property="giftId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="hash" jdbcType="VARCHAR" property="hash" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, address, system_address, to_address, related_id, gift_id, num, amount, `type`, 
+    `status`, hash, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from live_mining_gift_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from live_mining_gift_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.LiveMiningGiftRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into live_mining_gift_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        address,
+      </if>
+      <if test="systemAddress != null">
+        system_address,
+      </if>
+      <if test="toAddress != null">
+        to_address,
+      </if>
+      <if test="relatedId != null">
+        related_id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="hash != null">
+        hash,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="systemAddress != null">
+        #{systemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null">
+        #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null">
+        #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="hash != null">
+        #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningGiftRecord">
+    <!--@mbg.generated-->
+    update live_mining_gift_record
+    <set>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="systemAddress != null">
+        system_address = #{systemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null">
+        to_address = #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null">
+        related_id = #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="hash != null">
+        hash = #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into live_mining_gift_record
+    (address, system_address, to_address, related_id, gift_id, num, amount, `type`, `status`, 
+      hash, create_time, update_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.address,jdbcType=VARCHAR}, #{item.systemAddress,jdbcType=VARCHAR}, #{item.toAddress,jdbcType=VARCHAR}, 
+        #{item.relatedId,jdbcType=BIGINT}, #{item.giftId,jdbcType=BIGINT}, #{item.num,jdbcType=INTEGER}, 
+        #{item.amount,jdbcType=DECIMAL}, #{item.type,jdbcType=INTEGER}, #{item.status,jdbcType=INTEGER}, 
+        #{item.hash,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.LiveMiningGiftRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into live_mining_gift_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      address,
+      system_address,
+      to_address,
+      related_id,
+      gift_id,
+      num,
+      amount,
+      `type`,
+      `status`,
+      hash,
+      create_time,
+      update_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{address,jdbcType=VARCHAR},
+      #{systemAddress,jdbcType=VARCHAR},
+      #{toAddress,jdbcType=VARCHAR},
+      #{relatedId,jdbcType=BIGINT},
+      #{giftId,jdbcType=BIGINT},
+      #{num,jdbcType=INTEGER},
+      #{amount,jdbcType=DECIMAL},
+      #{type,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+      #{hash,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      address = #{address,jdbcType=VARCHAR},
+      system_address = #{systemAddress,jdbcType=VARCHAR},
+      to_address = #{toAddress,jdbcType=VARCHAR},
+      related_id = #{relatedId,jdbcType=BIGINT},
+      gift_id = #{giftId,jdbcType=BIGINT},
+      num = #{num,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      `type` = #{type,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      hash = #{hash,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.LiveMiningGiftRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into live_mining_gift_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="systemAddress != null">
+        system_address,
+      </if>
+      <if test="toAddress != null">
+        to_address,
+      </if>
+      <if test="relatedId != null">
+        related_id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="hash != null">
+        hash,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="systemAddress != null">
+        #{systemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null">
+        #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null">
+        #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="hash != null">
+        #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="systemAddress != null">
+        system_address = #{systemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null">
+        to_address = #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null">
+        related_id = #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="hash != null">
+        hash = #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

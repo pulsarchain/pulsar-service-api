@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="user_client_type" jdbcType="INTEGER" property="userClientType" />
+    <result column="register_ip" jdbcType="VARCHAR" property="registerIp" />
+    <result column="google_secret" jdbcType="VARCHAR" property="googleSecret" />
+    <result column="enable_google_secret" jdbcType="INTEGER" property="enableGoogleSecret" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, address, `source`, nick_name, head_img, `status`, `type`, device_id, user_client_type, 
+    register_ip, google_secret, enable_google_secret, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user` (address, `source`, nick_name, 
+      head_img, `status`, `type`, 
+      device_id, user_client_type, register_ip, 
+      google_secret, enable_google_secret, create_time
+      )
+    values (#{address,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, 
+      #{headImg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{deviceId,jdbcType=VARCHAR}, #{userClientType,jdbcType=INTEGER}, #{registerIp,jdbcType=VARCHAR}, 
+      #{googleSecret,jdbcType=VARCHAR}, #{enableGoogleSecret,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        address,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="headImg != null">
+        head_img,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="userClientType != null">
+        user_client_type,
+      </if>
+      <if test="registerIp != null">
+        register_ip,
+      </if>
+      <if test="googleSecret != null">
+        google_secret,
+      </if>
+      <if test="enableGoogleSecret != null">
+        enable_google_secret,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userClientType != null">
+        #{userClientType,jdbcType=INTEGER},
+      </if>
+      <if test="registerIp != null">
+        #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="googleSecret != null">
+        #{googleSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="enableGoogleSecret != null">
+        #{enableGoogleSecret,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        `source` = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userClientType != null">
+        user_client_type = #{userClientType,jdbcType=INTEGER},
+      </if>
+      <if test="registerIp != null">
+        register_ip = #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="googleSecret != null">
+        google_secret = #{googleSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="enableGoogleSecret != null">
+        enable_google_secret = #{enableGoogleSecret,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    set address = #{address,jdbcType=VARCHAR},
+      `source` = #{source,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      user_client_type = #{userClientType,jdbcType=INTEGER},
+      register_ip = #{registerIp,jdbcType=VARCHAR},
+      google_secret = #{googleSecret,jdbcType=VARCHAR},
+      enable_google_secret = #{enableGoogleSecret,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <resultMap id="MangerUserList" type="com.bosha.user.api.dto.ManagerUserListDto">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="source" jdbcType="INTEGER" property="source" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+        <result column="google_secret" jdbcType="VARCHAR" property="googleSecret" />
+        <result column="enable_google_secret" jdbcType="INTEGER" property="enableGoogleSecret" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="creditScore" jdbcType="INTEGER" property="creditScore" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="Basicmap" type="com.bosha.user.api.dto.UserBasicDto">
+        <result column="recommendUser" property="recommendUser" />
+    </resultMap>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user where address = #{address}
+    </select>
+    <select id="list" resultMap="MangerUserList">
+        select
+        <include refid="Base_Column_List" />,
+        (select u.user_address from user_invite_record u where u.be_invite_user_address = address) inviteUserAddress,
+        (select score from credit_score cs where cs.address = user.address )creditScore
+        from user
+        where 1=1
+        <if test="dto.userId != null">
+            and id = #{dto.userId}
+        </if>
+        <if test="dto.address != null and dto.address != ''">
+            and address = #{dto.address}
+        </if>
+        <if test="dto.source != null">
+            and source = #{dto.source}
+        </if>
+        <if test="dto.createTimeStart != null and dto.createTimeStart != '' and dto.createTimeEnd != null and dto.createTimeEnd != ''">
+            and create_time between #{dto.createTimeStart} and #{dto.createTimeEnd}
+        </if>
+        order by create_time desc
+    </select>
+    <select id="basic" resultMap="Basicmap">
+        select
+        <include refid="Base_Column_List" />,
+        (select count(*) from user_invite_record where user_id = #{userId}) recommendUser,
+        (select uir.user_address from user_invite_record uir where uir.be_invite_user_address = u.address)
+        inviteUserAddress,
+        (select score from credit_score cs where cs.address = u.address )creditScore
+        from user u
+        where id = #{userId}
+    </select>
+    <select id="addressToIds" resultType="com.bosha.user.api.dto.AddressToUid">
+        select address,id from user where
+        address in
+        <foreach close=")" collection="address" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </select>
+    <select id="idToAddresses" resultType="com.bosha.user.api.dto.AddressToUid">
+        select address,id from user where
+        id in
+        <foreach close=")" collection="ids" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </select>
+    <select id="count" resultType="int">
+        select count(id)
+        from user
+    </select>
+    <select id="addresses" resultType="java.lang.String">
+        select address
+        from user
+        <if test="page != null and size != null">
+            limit #{page},#{size}
+        </if>
+    </select>
+    <select id="randomAddresses" resultType="java.lang.String">
+        SELECT address
+        FROM user
+        ORDER BY RAND()
+        LIMIT #{num}
+    </select>
+    <select id="addressList" resultType="java.lang.String">
+        select address
+        from user
+    </select>
+    <select id="listUserHeadImgIsNull" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user u
+        where u.nick_name is null or u.head_img is null
+    </select>
+</mapper>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningRecordMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningRecord">
+        <!--@mbg.generated-->
+        <!--@Table live_mining_record-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="live_mining_id" jdbcType="BIGINT" property="liveMiningId"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="star_id" jdbcType="BIGINT" property="starId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, live_mining_id, amount, star_id, `status`, `type`, remark, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_record
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from live_mining_record
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningRecord" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="starId != null">
+                star_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="starId != null">
+                #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningRecord">
+        <!--@mbg.generated-->
+        update live_mining_record
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="starId != null">
+                star_id = #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_record
+        (address, live_mining_id, amount, star_id, `status`, `type`, remark, create_time,
+        update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.liveMiningId,jdbcType=BIGINT}, #{item.amount,jdbcType=DECIMAL},
+            #{item.starId,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER}, #{item.type,jdbcType=INTEGER},
+            #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningRecord" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            address,
+            live_mining_id,
+            amount,
+            star_id,
+            `status`,
+            `type`,
+            remark,
+            create_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{address,jdbcType=VARCHAR},
+            #{liveMiningId,jdbcType=BIGINT},
+            #{amount,jdbcType=DECIMAL},
+            #{starId,jdbcType=BIGINT},
+            #{status,jdbcType=INTEGER},
+            #{type,jdbcType=INTEGER},
+            #{remark,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            address = #{address,jdbcType=VARCHAR},
+            live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            amount = #{amount,jdbcType=DECIMAL},
+            star_id = #{starId,jdbcType=BIGINT},
+            `status` = #{status,jdbcType=INTEGER},
+            `type` = #{type,jdbcType=INTEGER},
+            remark = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningRecord" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="starId != null">
+                star_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="starId != null">
+                #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="starId != null">
+                star_id = #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByAddressAndTimeAndLiveMiningId" resultType="int">
+        select count(lmr.id)
+        from live_mining_record lmr
+        where lmr.address = #{address}
+          and lmr.live_mining_id = #{id}
+          and lmr.type = #{type}
+          and lmr.create_time &gt;= #{startTime}
+          and lmr.create_time &lt; #{endTime}
+    </select>
+    <select id="countMinerNum" resultType="int">
+        select count(distinct lmr.address)
+        from live_mining_record lmr
+        where lmr.live_mining_id = #{id}
+    </select>
+    <select id="calcPerMinute" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_record lmr
+        where lmr.live_mining_id = #{liveMiningId}
+        and lmr.create_time &gt;= #{startTime}
+        and lmr.create_time &lt; #{endTime}
+        and lmr.amount is null
+    </select>
+    <select id="giveOut" resultType="java.math.BigDecimal">
+        select ifnull(sum(lmr.amount), 0)
+        from live_mining_record lmr
+        where lmr.live_mining_id = #{liveMiningId}
+        <if test="types != null and types.size() != 0">
+            and lmr.type in
+            <foreach close=")" collection="types" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    <update id="giveOutUpdate">
+        update live_mining_record
+        set amount = 0,
+        update_time = now(),
+        status = 1
+        where live_mining_id = #{liveMiningId}
+        and amount is null
+        <choose>
+            <when test="types != null and types.size() != 0">
+                and type in
+                <foreach collection="types" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </update>
+    <update id="updateAmountBatch">
+        update live_mining_record set amount = 0,update_time = #{date},status = 1
+        where id in
+        <foreach close=")" collection="ids" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </update>
+    <select id="lastTimeLogInfo" resultMap="BaseResultMap">
+        SELECT
+            lmr.remark,
+            ifnull( sum( lmr.amount ), 0 ) amount
+        FROM
+            live_mining_record lmr
+        WHERE
+            lmr.live_mining_id = #{liveMiningId}
+        GROUP BY
+            lmr.remark
+        ORDER BY
+            amount DESC
+    </select>
+    <!-- &lt;select id="countLeftByType" resultType="int"&gt;
+         select count(id)
+         from live_mining_record lmr
+         where lmr.live_mining_id = #{liveMiningId}
+           and type = #{type}
+     &lt;/select&gt;-->
+</mapper>

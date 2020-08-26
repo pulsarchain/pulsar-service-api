@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.scan.server.mapper.AddressBalanceMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.scan.api.entity.AddressBalance">
+        <!--@mbg.generated-->
+        <!--@Table address_balance-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="balance" jdbcType="DECIMAL" property="balance"/>
+        <result column="transaction_count" jdbcType="BIGINT" property="transactionCount"/>
+        <result column="show" jdbcType="INTEGER" property="show"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, remark, `type`, balance, transaction_count, `show`, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from address_balance
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from address_balance
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.scan.api.entity.AddressBalance"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into address_balance (address, remark, `type`,
+        balance, transaction_count, `show`,
+        create_time, update_time)
+        values (#{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+        #{balance,jdbcType=DECIMAL}, #{transactionCount,jdbcType=BIGINT}, #{show,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.scan.api.entity.AddressBalance" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into address_balance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="balance != null">
+                balance,
+            </if>
+            <if test="transactionCount != null">
+                transaction_count,
+            </if>
+            <if test="show != null">
+                `show`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="transactionCount != null">
+                #{transactionCount,jdbcType=BIGINT},
+            </if>
+            <if test="show != null">
+                #{show,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.scan.api.entity.AddressBalance">
+        <!--@mbg.generated-->
+        update address_balance
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="transactionCount != null">
+                transaction_count = #{transactionCount,jdbcType=BIGINT},
+            </if>
+            <if test="show != null">
+                `show` = #{show,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.scan.api.entity.AddressBalance">
+        <!--@mbg.generated-->
+        update address_balance
+        set address = #{address,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=INTEGER},
+        balance = #{balance,jdbcType=DECIMAL},
+        transaction_count = #{transactionCount,jdbcType=BIGINT},
+        `show` = #{show,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update address_balance
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="remark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="balance = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.balance,jdbcType=DECIMAL}
+                </foreach>
+            </trim>
+            <trim prefix="transaction_count = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.transactionCount,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="`show` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.show,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update address_balance
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="remark = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.remark != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.type != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="balance = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.balance != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.balance,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="transaction_count = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.transactionCount != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.transactionCount,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`show` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.show != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.show,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into address_balance
+        (address, remark, `type`, balance, transaction_count, `show`, create_time, update_time
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER},
+            #{item.balance,jdbcType=DECIMAL}, #{item.transactionCount,jdbcType=BIGINT}, #{item.show,jdbcType=INTEGER},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.bosha.scan.api.entity.AddressBalance"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into address_balance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            address,
+            remark,
+            `type`,
+            balance,
+            transaction_count,
+            `show`,
+            create_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{address,jdbcType=VARCHAR},
+            #{remark,jdbcType=VARCHAR},
+            #{type,jdbcType=INTEGER},
+            #{balance,jdbcType=DECIMAL},
+            #{transactionCount,jdbcType=BIGINT},
+            #{show,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            address = #{address,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            `type` = #{type,jdbcType=INTEGER},
+            balance = #{balance,jdbcType=DECIMAL},
+            transaction_count = #{transactionCount,jdbcType=BIGINT},
+            `show` = #{show,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.scan.api.entity.AddressBalance" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into address_balance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <!--  <if test="id != null">
+                  id,
+              </if>-->
+            <if test="address != null">
+                address,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="balance != null">
+                balance,
+            </if>
+            <if test="transactionCount != null">
+                transaction_count,
+            </if>
+            <if test="show != null">
+                `show`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <!--   <if test="id != null">
+                   #{id,jdbcType=BIGINT},
+               </if>-->
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="transactionCount != null">
+                #{transactionCount,jdbcType=BIGINT},
+            </if>
+            <if test="show != null">
+                #{show,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <!--   <if test="id != null">
+                   id = #{id,jdbcType=BIGINT},
+               </if>-->
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="transactionCount != null">
+                transaction_count = #{transactionCount,jdbcType=BIGINT},
+            </if>
+            <if test="show != null">
+                `show` = #{show,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from address_balance ab
+        where MOD ( id, #{total} ) = #{index}
+        limit #{page},#{size}
+    </select>
+    <select id="count" resultType="int">
+        select count(*)
+        from address_balance ab
+        where MOD(id, #{total}) = #{index}
+    </select>
+    <select id="listAddressBalance" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from address_balance
+        where `show` = 1
+        order by balance desc
+        <if test="size != null">
+            limit #{size}
+        </if>
+    </select>
+    <select id="totalInfo" resultType="com.bosha.scan.api.dto.TotalInfo">
+        SELECT ifnull(sum(balance), 0)              totalBalance,
+               count(CASE `show` WHEN 1 THEN 1 END) totalNum,
+               ifnull(sum(transaction_count), 0)    totalTransactionCount
+        FROM address_balance
+    </select>
+    <update id="hideBatch">
+        update address_balance set `show` = 0
+        where address in (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+    <select id="monitor" resultType="com.bosha.scan.api.dto.AddressBalanceUserInfo">
+        select ifnull(u.nick_name,'') nickName,ab.type contract,ab.address,ab.balance
+        from address_balance ab
+        left join user u on ab.address = u.address
+        where ab.address in
+        <foreach collection="address" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from address_balance where address = #{address}
+    </select>
+    <select id="isExist" resultType="int">
+        select count(*)
+        from address_balance
+        where address = #{address}
+    </select>
+
+</mapper>

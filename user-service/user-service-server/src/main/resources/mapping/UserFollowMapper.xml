@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.UserFollowMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.UserFollow">
+        <!--@mbg.generated-->
+        <!--@Table user_follow-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_address" jdbcType="VARCHAR" property="userAddress"/>
+        <result column="follow_user_address" jdbcType="VARCHAR" property="followUserAddress"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="follow" jdbcType="INTEGER" property="follow"/>
+        <result column="friend" jdbcType="INTEGER" property="friend"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_address, follow_user_address, remark, follow, friend, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_follow
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from user_follow
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.UserFollow"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_follow (user_address, follow_user_address, remark,
+        follow, friend, create_time
+        )
+        values (#{userAddress,jdbcType=VARCHAR}, #{followUserAddress,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{follow,jdbcType=INTEGER}, #{friend,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.UserFollow"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_follow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userAddress != null">
+                user_address,
+            </if>
+            <if test="followUserAddress != null">
+                follow_user_address,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="follow != null">
+                follow,
+            </if>
+            <if test="friend != null">
+                friend,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userAddress != null">
+                #{userAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="followUserAddress != null">
+                #{followUserAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="follow != null">
+                #{follow,jdbcType=INTEGER},
+            </if>
+            <if test="friend != null">
+                #{friend,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.UserFollow">
+        <!--@mbg.generated-->
+        update user_follow
+        <set>
+            <if test="userAddress != null">
+                user_address = #{userAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="followUserAddress != null">
+                follow_user_address = #{followUserAddress,jdbcType=VARCHAR},
+            </if>
+            <choose>
+                <when test="remark != null and remark != ''">
+                    remark = #{remark},
+                </when>
+                <otherwise>
+                    remark = null,
+                </otherwise>
+            </choose>
+            <if test="follow != null">
+                follow = #{follow,jdbcType=INTEGER},
+            </if>
+            <if test="friend != null">
+                friend = #{friend,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.UserFollow">
+        <!--@mbg.generated-->
+        update user_follow
+        set user_address = #{userAddress,jdbcType=VARCHAR},
+        follow_user_address = #{followUserAddress,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        follow = #{follow,jdbcType=INTEGER},
+        friend = #{friend,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_follow
+        (user_address, follow_user_address, remark, follow, friend, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userAddress,jdbcType=VARCHAR}, #{item.followUserAddress,jdbcType=VARCHAR},
+            #{item.remark,jdbcType=VARCHAR}, #{item.follow,jdbcType=INTEGER}, #{item.friend,jdbcType=INTEGER},
+            #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="selectByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_follow where user_address=#{userAddress} and
+        follow_user_address=#{followUserAddress}
+    </select>
+
+
+    <select id="selectUserFollow" resultType="com.bosha.user.api.dto.UserFollowListDto">
+        select f.id,u.nick_name nickName,f.follow_user_address address,u.head_img headImg
+        FROM user_follow f left join user u on f.follow_user_address = u.address
+        where f.user_address = #{userAddress} and f.follow = 1
+    </select>
+
+    <select id="selectUserFriend" resultType="com.bosha.user.api.dto.UserFollowListDto">
+        select f.id,u.nick_name nickName,f.follow_user_address address,u.head_img
+        headImg,f.remark,f.follow,f.friend
+        FROM user_follow f LEFT JOIN user u ON f.follow_user_address = u.address
+        where f.user_address = #{userAddress} AND (f.follow=1 or f.friend =1)
+    </select>
+
+    <select id="selectFriend" resultType="com.bosha.user.api.dto.UserFollowListDto">
+        select f.id,u.nick_name nickName,f.follow_user_address address,u.head_img
+        headImg,f.remark,f.follow,f.friend
+        FROM user_follow f LEFT JOIN user u ON f.follow_user_address = u.address
+        where f.user_address = #{userAddress} AND f.friend =1
+    </select>
+
+    <select id="selectCoverUserFriend" resultType="com.bosha.user.api.dto.UserFollowListDto">
+        select f.id,u.nick_name nickName,f.user_address address,u.head_img
+        headImg,f.follow,f.friend
+        FROM user_follow f LEFT JOIN user u ON f.user_address = u.address
+        where f.follow_user_address = #{userAddress} AND (f.follow=1 or f.friend =1)
+    </select>
+
+    <select id="selectCountByAddress" resultType="java.lang.Integer">
+        select count(*) from user_follow f where f.user_address = #{userAddress}
+        and follow_user_address= #{followUserAddress,jdbcType=VARCHAR} and f.follow=1
+    </select>
+    <select id="searchAddress" resultType="com.bosha.user.api.dto.UserFriendDto">
+        select f.id,u.nick_name nickName,u.head_img headImg,ifnull(f.friend,0) as friend,ifnull(f.follow,0)
+        follow,u.address address,f.remark from user u left join
+        user_follow f on u.address = f.follow_user_address and f.user_address =#{userAddress}
+        where u.address = #{address}
+    </select>
+
+</mapper>

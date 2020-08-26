@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.PushMessageMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.PushMessage">
+        <!--@mbg.generated-->
+        <!--@Table push_message-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="body" jdbcType="VARCHAR" property="body"/>
+        <result column="ext_parameters" jdbcType="VARCHAR" property="extParameters"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="sub_type" jdbcType="VARCHAR" property="subType"/>
+        <result column="push_type" jdbcType="VARCHAR" property="pushType"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, address, title, body, ext_parameters, `status`, `type`, sub_type, push_type,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from push_message
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from push_message
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.PushMessage"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into push_message (user_id, address, title,
+        body, ext_parameters, `status`,
+        `type`, sub_type, push_type,
+        create_time, update_time)
+        values (#{userId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+        #{body,jdbcType=VARCHAR}, #{extParameters,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR}, #{subType,jdbcType=VARCHAR}, #{pushType,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.PushMessage"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into push_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="body != null">
+                body,
+            </if>
+            <if test="extParameters != null">
+                ext_parameters,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="subType != null">
+                sub_type,
+            </if>
+            <if test="pushType != null">
+                push_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="body != null">
+                #{body,jdbcType=VARCHAR},
+            </if>
+            <if test="extParameters != null">
+                #{extParameters,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="subType != null">
+                #{subType,jdbcType=VARCHAR},
+            </if>
+            <if test="pushType != null">
+                #{pushType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.PushMessage">
+        <!--@mbg.generated-->
+        update push_message
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="body != null">
+                body = #{body,jdbcType=VARCHAR},
+            </if>
+            <if test="extParameters != null">
+                ext_parameters = #{extParameters,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="subType != null">
+                sub_type = #{subType,jdbcType=VARCHAR},
+            </if>
+            <if test="pushType != null">
+                push_type = #{pushType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.common.api.entity.PushMessage">
+        <!--@mbg.generated-->
+        update push_message
+        set user_id = #{userId,jdbcType=BIGINT},
+        address = #{address,jdbcType=VARCHAR},
+        title = #{title,jdbcType=VARCHAR},
+        body = #{body,jdbcType=VARCHAR},
+        ext_parameters = #{extParameters,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=VARCHAR},
+        sub_type = #{subType,jdbcType=VARCHAR},
+        push_type = #{pushType,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update push_message
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="user_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="title = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.title,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="body = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.body,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="ext_parameters = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.extParameters,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="sub_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.subType,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="push_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.pushType,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update push_message
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="user_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.userId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="title = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.title != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.title,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="body = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.body != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.body,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ext_parameters = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.extParameters != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.extParameters,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.status != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.type != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="sub_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.subType != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.subType,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="push_type = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.pushType != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.pushType,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into push_message
+        (user_id, address, title, body, ext_parameters, `status`, `type`, sub_type, push_type,
+        create_time, update_time)
+        values
+        <foreach collection="ids" item="item" separator=",">
+            (#{record.userId,jdbcType=BIGINT},
+            #{item},
+            #{record.title,jdbcType=VARCHAR},
+            #{record.body,jdbcType=VARCHAR},
+            #{record.extParameters,jdbcType=VARCHAR},
+            #{record.status,jdbcType=INTEGER},
+            #{record.type,jdbcType=VARCHAR},
+            #{record.subType,jdbcType=VARCHAR},
+            #{record.pushType,jdbcType=VARCHAR},
+            #{record.createTime,jdbcType=TIMESTAMP},
+            #{record.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.PushMessage"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into push_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            user_id,
+            address,
+            title,
+            body,
+            ext_parameters,
+            `status`,
+            `type`,
+            sub_type,
+            push_type,
+            create_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{userId,jdbcType=BIGINT},
+            #{address,jdbcType=VARCHAR},
+            #{title,jdbcType=VARCHAR},
+            #{body,jdbcType=VARCHAR},
+            #{extParameters,jdbcType=VARCHAR},
+            #{status,jdbcType=INTEGER},
+            #{type,jdbcType=VARCHAR},
+            #{subType,jdbcType=VARCHAR},
+            #{pushType,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            user_id = #{userId,jdbcType=BIGINT},
+            address = #{address,jdbcType=VARCHAR},
+            title = #{title,jdbcType=VARCHAR},
+            body = #{body,jdbcType=VARCHAR},
+            ext_parameters = #{extParameters,jdbcType=VARCHAR},
+            `status` = #{status,jdbcType=INTEGER},
+            `type` = #{type,jdbcType=VARCHAR},
+            sub_type = #{subType,jdbcType=VARCHAR},
+            push_type = #{pushType,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.common.api.entity.PushMessage" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into push_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="body != null">
+                body,
+            </if>
+            <if test="extParameters != null">
+                ext_parameters,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="subType != null">
+                sub_type,
+            </if>
+            <if test="pushType != null">
+                push_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="body != null">
+                #{body,jdbcType=VARCHAR},
+            </if>
+            <if test="extParameters != null">
+                #{extParameters,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="subType != null">
+                #{subType,jdbcType=VARCHAR},
+            </if>
+            <if test="pushType != null">
+                #{pushType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="body != null">
+                body = #{body,jdbcType=VARCHAR},
+            </if>
+            <if test="extParameters != null">
+                ext_parameters = #{extParameters,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="subType != null">
+                sub_type = #{subType,jdbcType=VARCHAR},
+            </if>
+            <if test="pushType != null">
+                push_type = #{pushType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertBatch">
+        insert into push_message (address,
+        title,
+        body,
+        ext_parameters,
+        `status`,
+        create_time,
+        `type`,
+        push_type)
+        VALUES
+        <foreach close=")" collection="ids" item="item" open="(" separator=",">
+            #{item},
+            #{record.title,jdbcType=VARCHAR},
+            #{record.body,jdbcType=VARCHAR},
+            #{record.extParameters,jdbcType=VARCHAR},
+            #{record.status,jdbcType=INTEGER},
+            #{record.createTime,jdbcType=TIMESTAMP},
+            #{record.type,jdbcType=VARCHAR},
+            #{record.pushType,jdbcType=VARCHAR}
+        </foreach>
+    </insert>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from push_message
+        where address = #{address}
+        <if test="req.type != null and req.type != ''">
+            and `type` = #{req.type}
+        </if>
+        <if test="req.status != null">
+            and status = #{req.status}
+        </if>
+        order by create_time desc
+    </select>
+    <update id="updateStatus">
+        update push_message set status = 1 ,update_time = #{time}
+        where address = #{address}
+        <if test="id != null">
+            and id = #{id}
+        </if>
+    </update>
+    <select id="unreadCount" resultType="int">
+        select count(id)
+        from push_message
+        where address = #{address}
+          and status = 0
+    </select>
+    <delete id="deleteBatch">
+        DELETE
+        FROM push_message pm
+        WHERE TIMESTAMPDIFF(
+                      DAY,
+                      pm.create_time,
+                      DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%S')) >= 7
+    </delete>
+    <select id="listByType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from push_message pm where address = #{address}
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="subType != null and subType != ''">
+            and sub_type = #{subType}
+        </if>
+    </select>
+</mapper>

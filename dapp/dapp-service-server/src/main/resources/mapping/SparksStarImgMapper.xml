@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksStarImgMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksStarImg">
+        <!--@mbg.generated-->
+        <!--@Table sparks_star_img-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="sparks_star_id" jdbcType="BIGINT" property="sparksStarId"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, sparks_star_id, url
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_star_img
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sparks_star_img
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.SparksStarImg"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_star_img
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sparksStarId != null">
+                sparks_star_id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sparksStarId != null">
+                #{sparksStarId,jdbcType=BIGINT},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksStarImg">
+        <!--@mbg.generated-->
+        update sparks_star_img
+        <set>
+            <if test="sparksStarId != null">
+                sparks_star_id = #{sparksStarId,jdbcType=BIGINT},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sparks_star_img
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="sparks_star_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.sparksStarId != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.sparksStarId,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.url != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.url,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_star_img
+        (sparks_star_id, url)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.sparksStarId,jdbcType=BIGINT}, #{item.url,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    <delete id="deleteBySparksId">
+        delete
+        from sparks_star_img
+        where sparks_star_id = #{id}
+    </delete>
+    <select id="imgs" resultType="java.lang.String">
+        select url from sparks_star_img where sparks_star_id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.AdminUserMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.AdminUser">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="account_name" jdbcType="VARCHAR" property="accountName"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="post_id" jdbcType="INTEGER" property="positionId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="listUserMap" type="com.bosha.user.api.dto.AdminUserListDto"
+               extends="BaseResultMap">
+        <result column="positionName" property="positionName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+            id,
+            account_name,
+            mobile,
+            real_name,
+            `password`,
+            post_id,
+            `status`,
+            create_time,
+            update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="getByAccountName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_user
+        where account_name = #{accountName}
+    </select>
+    <select id="listByPositionId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_user
+        where post_id = #{positionId}
+    </select>
+    <select id="listUser" resultMap="listUserMap"
+            parameterType="com.bosha.user.api.dto.AdminUserListRequestDto">
+        select
+        au.account_name,
+        au.id,
+        au.mobile,
+        au.create_time,
+        au.post_id post_id ,
+        au.status,
+        au.real_name,
+        p.name positionName
+        from admin_user au
+        left join post p on p.id = au.post_id
+        where 1= 1
+        <if test="loginAccount != null and loginAccount != '' ">
+            and au.account_name like concat('%',#{loginAccount},'%')
+        </if>
+        <if test="phone != null and phone !=''">
+            and au.mobile like concat('%',#{phone},'%')
+        </if>
+        <if test="positionId != null">
+            and p.id = #{positionId}
+        </if>
+        order by au.create_time desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from admin_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.user.api.entity.AdminUser" useGeneratedKeys="true">
+        insert into admin_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accountName != null and accountName !=''">
+                account_name,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="realName != null and realName !=''">
+                real_name,
+            </if>
+
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="positionId != null">
+                post_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="accountName != null and accountName !=''">
+                #{accountName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null and realName !=''">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="positionId != null">
+                #{positionId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.AdminUser">
+        update admin_user
+        <set>
+            <if test="accountName != null and accountName !=''">
+                account_name = #{accountName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="positionId != null">
+                post_id = #{positionId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPositionId">
+        update admin_user au
+        set au.status = 0
+        where au.post_id = #{positionId}
+    </update>
+</mapper>

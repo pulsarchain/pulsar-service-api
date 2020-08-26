@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.FileResourceMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.FileResource">
+    <!--@mbg.generated-->
+    <!--@Table file_resource-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="height" jdbcType="BIGINT" property="height" />
+    <result column="width" jdbcType="BIGINT" property="width" />
+    <result column="mime_type" jdbcType="VARCHAR" property="mimeType" />
+    <result column="format" jdbcType="VARCHAR" property="format" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, create_time, url, `size`, height, width, mime_type, format, `status`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from file_resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from file_resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.FileResource" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into file_resource (`name`, create_time, url, 
+      `size`, height, width, mime_type, 
+      format, `status`)
+    values (#{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, 
+      #{size,jdbcType=BIGINT}, #{height,jdbcType=BIGINT}, #{width,jdbcType=BIGINT}, #{mimeType,jdbcType=VARCHAR}, 
+      #{format,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.FileResource" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into file_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="size != null">
+        `size`,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="mimeType != null">
+        mime_type,
+      </if>
+      <if test="format != null">
+        format,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=BIGINT},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=BIGINT},
+      </if>
+      <if test="mimeType != null">
+        #{mimeType,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null">
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.FileResource">
+    <!--@mbg.generated-->
+    update file_resource
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        `size` = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=BIGINT},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=BIGINT},
+      </if>
+      <if test="mimeType != null">
+        mime_type = #{mimeType,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null">
+        format = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.common.api.entity.FileResource">
+    <!--@mbg.generated-->
+    update file_resource
+    set `name` = #{name,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=BIGINT},
+      height = #{height,jdbcType=BIGINT},
+      width = #{width,jdbcType=BIGINT},
+      mime_type = #{mimeType,jdbcType=VARCHAR},
+      format = #{format,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

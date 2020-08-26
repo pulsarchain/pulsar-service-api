@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.StarRewardMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.StarReward">
+        <!--@mbg.generated-->
+        <!--@Table star_reward-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="star_member_id" jdbcType="BIGINT" property="starMemberId"/>
+        <result column="contract_address" jdbcType="VARCHAR" property="contractAddress"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="address_type" jdbcType="INTEGER" property="addressType"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="current_hz" jdbcType="DECIMAL" property="currentHz"/>
+        <result column="hz" jdbcType="DECIMAL" property="hz"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, star_member_id, contract_address, address, address_type, `level`, current_hz,
+        hz, `status`, hash, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from star_reward
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from star_reward
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.StarReward"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into star_reward
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="starMemberId != null">
+                star_member_id,
+            </if>
+            <if test="contractAddress != null">
+                contract_address,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="addressType != null">
+                address_type,
+            </if>
+            <if test="level != null">
+                `level`,
+            </if>
+            <if test="currentHz != null">
+                current_hz,
+            </if>
+            <if test="hz != null">
+                hz,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="starMemberId != null">
+                #{starMemberId,jdbcType=BIGINT},
+            </if>
+            <if test="contractAddress != null">
+                #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressType != null">
+                #{addressType,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="currentHz != null">
+                #{currentHz,jdbcType=DECIMAL},
+            </if>
+            <if test="hz != null">
+                #{hz,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.StarReward">
+        <!--@mbg.generated-->
+        update star_reward
+        <set>
+            <if test="starMemberId != null">
+                star_member_id = #{starMemberId,jdbcType=BIGINT},
+            </if>
+            <if test="contractAddress != null">
+                contract_address = #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressType != null">
+                address_type = #{addressType,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                `level` = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="currentHz != null">
+                current_hz = #{currentHz,jdbcType=DECIMAL},
+            </if>
+            <if test="hz != null">
+                hz = #{hz,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into star_reward
+        (star_member_id, contract_address, address, address_type, `level`, current_hz, hz,
+        `status`, hash, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.starMemberId,jdbcType=BIGINT}, #{item.contractAddress,jdbcType=VARCHAR},
+            #{item.address,jdbcType=VARCHAR}, #{item.addressType,jdbcType=INTEGER}, #{item.level,jdbcType=INTEGER},
+            #{item.currentHz,jdbcType=DECIMAL}, #{item.hz,jdbcType=DECIMAL}, #{item.status,jdbcType=INTEGER},
+            #{item.hash,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+    <select id="updateStatusAndHashBatch"  >
+        update star_reward sr set status = 1,hash = #{hash},update_time = #{date}
+        where id in (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+</mapper>

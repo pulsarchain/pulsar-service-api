@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.finance.server.mapper.MiningDetailMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.finance.api.entity.MiningDetail">
+        <!--@mbg.generated-->
+        <!--@Table mining_detail-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="contract_address" jdbcType="VARCHAR" property="contractAddress"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="service_type" jdbcType="INTEGER" property="serviceType"/>
+        <result column="related_id" jdbcType="BIGINT" property="relatedId"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, address, contract_address, hash, service_type, related_id, money, `status`,
+        create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from mining_detail
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectToDayMoney" resultType="java.math.BigDecimal">
+        SELECT sum(money)
+        FROM mining_detail
+        WHERE TO_DAYS(create_time) = TO_DAYS(NOW())
+          and user_id = #{userId}
+    </select>
+    <select id="selectTotalMoney" resultType="java.math.BigDecimal">
+        SELECT sum(money)
+        FROM mining_detail
+        WHERE user_id = #{userId}
+    </select>
+    <select id="findMiningDetailPage" resultType="com.bosha.finance.api.dto.response.MiningDetailListDto">
+        SELECT d.id,
+               d.service_type     serviceType,
+               d.contract_address contractAddress,
+               d.hash,
+               d.create_time      createTime,
+               d.money,
+               d.status
+        FROM mining_detail d
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <![CDATA[<=]]> date(create_time)
+          and user_id = #{userId}
+        order by d.create_time desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from mining_detail
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.finance.api.entity.MiningDetail"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into mining_detail (user_id, address, contract_address,
+        hash, service_type, related_id,
+        money, `status`, create_time
+        )
+        values (#{userId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{contractAddress,jdbcType=VARCHAR},
+        #{hash,jdbcType=VARCHAR}, #{serviceType,jdbcType=INTEGER}, #{relatedId,jdbcType=BIGINT},
+        #{money,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.finance.api.entity.MiningDetail" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into mining_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="contractAddress != null">
+                contract_address,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="serviceType != null">
+                service_type,
+            </if>
+            <if test="relatedId != null">
+                related_id,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="contractAddress != null">
+                #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceType != null">
+                #{serviceType,jdbcType=INTEGER},
+            </if>
+            <if test="relatedId != null">
+                #{relatedId,jdbcType=BIGINT},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.finance.api.entity.MiningDetail">
+        <!--@mbg.generated-->
+        update mining_detail
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="contractAddress != null">
+                contract_address = #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceType != null">
+                service_type = #{serviceType,jdbcType=INTEGER},
+            </if>
+            <if test="relatedId != null">
+                related_id = #{relatedId,jdbcType=BIGINT},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.finance.api.entity.MiningDetail">
+        <!--@mbg.generated-->
+        update mining_detail
+        set user_id = #{userId,jdbcType=BIGINT},
+        address = #{address,jdbcType=VARCHAR},
+        contract_address = #{contractAddress,jdbcType=VARCHAR},
+        hash = #{hash,jdbcType=VARCHAR},
+        service_type = #{serviceType,jdbcType=INTEGER},
+        related_id = #{relatedId,jdbcType=BIGINT},
+        money = #{money,jdbcType=DECIMAL},
+        `status` = #{status,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="myEarnings" resultType="java.math.BigDecimal">
+        select ifnull(sum(money), 0)
+        from mining_detail md
+        where md.address = #{address}
+          and md.status = 1
+    </select>
+</mapper>

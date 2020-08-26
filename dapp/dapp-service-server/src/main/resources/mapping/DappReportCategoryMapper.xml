@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.DappReportCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.DappReportCategory">
+        <!--@mbg.generated-->
+        <!--@Table dapp_report_category-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="show" jdbcType="INTEGER" property="show"/>
+    </resultMap>
+    <resultMap id="LIST" type="com.bosha.dapp.api.entity.DappReportCategory" extends="BaseResultMap">
+        <collection property="list" ofType="com.bosha.dapp.api.entity.DappReportCategory" select="selectByParentId"
+                    javaType="java.util.ArrayList" column="id"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, parent_id, `level`, `name`, sort, `show`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_report_category
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByParentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_report_category
+        where parent_id = #{id,jdbcType=BIGINT} and `show` = 1
+        order by sort
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from dapp_report_category
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.dapp.api.entity.DappReportCategory" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dapp_report_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="level != null">
+                `level`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="show != null">
+                `show`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="show != null">
+                #{show,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.DappReportCategory">
+        <!--@mbg.generated-->
+        update dapp_report_category
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="level != null">
+                `level` = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="show != null">
+                `show` = #{show,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dapp_report_category
+        (parent_id, `level`, `name`, sort, `show`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.parentId,jdbcType=BIGINT}, #{item.level,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR},
+            #{item.sort,jdbcType=INTEGER}, #{item.show,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <select id="list" resultMap="LIST">
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_report_category
+        where `show` = 1 and level = 1
+        order by sort
+    </select>
+</mapper>

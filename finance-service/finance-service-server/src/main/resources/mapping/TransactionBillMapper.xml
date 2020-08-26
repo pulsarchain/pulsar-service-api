@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.finance.server.mapper.TransactionBillMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.finance.api.entity.TransactionBill">
+        <!--@mbg.generated-->
+        <!--@Table transaction_bill-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="service_type" jdbcType="INTEGER" property="serviceType"/>
+        <result column="coin" jdbcType="BIGINT" property="coin"/>
+        <result column="number" jdbcType="DECIMAL" property="number"/>
+        <result column="actual_number" jdbcType="DECIMAL" property="actualNumber"/>
+        <result column="fee" jdbcType="DECIMAL" property="fee"/>
+        <result column="transaction_time" jdbcType="TIMESTAMP" property="transactionTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="from_address" jdbcType="VARCHAR" property="fromAddress"/>
+        <result column="to_address" jdbcType="VARCHAR" property="toAddress"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="transaction_hash" jdbcType="VARCHAR" property="transactionHash"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="balance" jdbcType="DECIMAL" property="balance"/>
+        <result column="block_num" jdbcType="BIGINT" property="blockNum"/>
+        <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="audit_reason" jdbcType="INTEGER" property="auditReason"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, serial_number, `type`, service_type, coin, `number`, actual_number,
+        fee, transaction_time, `status`, from_address, to_address, create_time, transaction_hash,
+        remark, balance, block_num, audit_time, `operator`, audit_reason
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from transaction_bill
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="findIntoTransactionBillPage"
+            resultType="com.bosha.finance.api.dto.response.IntoTransactionBillListDto">
+        select t.id,serial_number serialNumber,user_id userId,u.address,c.en_name coinName,number,t.create_time
+        createTime,
+        t.transaction_time transactionTime,t.status,transaction_hash transactionHash,remark
+        from transaction_bill t
+        left join user u on t.user_id = u.id
+        left join coin c on c.id = t.coin
+        where t.type=1 and service_type=1
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="serialNumber != null">
+                serial_number = #{serialNumber}
+            </if>
+            <if test="address != null">
+                address = #{address}
+            </if>
+            <if test="startTime != null and endTime != null">
+                t.create_time between #{startTime} and #{endTime}
+            </if>
+            <if test="status!=null ">
+                t.stauts = #{status}
+            </if>
+            <if test="coinId!=null ">
+                c.id = #{coinId}
+            </if>
+        </where>
+    </select>
+    <select id="findOutTransactionBillPage"
+            resultType="com.bosha.finance.api.dto.response.OutTransactionBillListDto">
+        select t.id,serial_number serialNumber,user_id userId,u.address,t.to_address toAddress,c.en_name
+        coinName,number,
+        t.fee,t.actual_number actualNumber,
+        t.create_time createTime,t.audit_time auditTime,
+        t.status,transaction_hash transactionHash,audit_reason auditReason,operator
+        from transaction_bill t
+        left join user u on t.user_id = u.id
+        left join coin c on c.id = t.coin
+        where t.type=2 and service_type=2
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="serialNumber != null">
+                serial_number = #{serialNumber}
+            </if>
+            <if test="address != null">
+                address = #{address}
+            </if>
+            <if test="startTime != null and endTime != null">
+                t.create_time between #{startTime} and #{endTime}
+            </if>
+            <if test="status!=null ">
+                t.stauts = #{status}
+            </if>
+            <if test="coinId!=null ">
+                c.id = #{coinId}
+            </if>
+        </where>
+
+    </select>
+    <select id="findTransactionBillPage"
+            resultType="com.bosha.finance.api.dto.response.TransactionBillListDto">
+        select t.id,serial_number serialNumber,serivce_type serviceType,
+        user_id userId,u.address,t.to_address toAddress,c.en_name coinName,number,
+        t.fee,t.actual_number actualNumber,
+        t.create_time createTime,t.audit_time auditTime,
+        t.status,transaction_hash transactionHash,audit_reason auditReason,operator
+        from transaction_bill t
+        left join user u on t.user_id = u.id
+        left join coin c on c.id = t.coin
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="serialNumber != null">
+                serial_number = #{serialNumber}
+            </if>
+            <if test="address != null">
+                address = #{address}
+            </if>
+            <if test="startNumber != null and endNumber != null">
+                t.number >=#{startNumber} and t.number  <![CDATA[<=]]> #{endNumber}
+            </if>
+            <if test="startTime != null and endTime != null">
+                t.create_time between #{startTime} and #{endTime}
+            </if>
+            <if test="status!=null ">
+                t.stauts = #{status}
+            </if>
+            <if test="coinId!=null ">
+                c.id = #{coinId}
+            </if>
+        </where>
+        order by
+    </select>
+    <select id="findUserBillByUserIdAndCoinId"
+            resultType="com.bosha.finance.api.dto.response.UserTransactionBillListDto">
+        select t.id,serial_number serialNumber,serivce_type serviceType,type,
+        u.address,t.to_address toAddress,c.en_name coinName,from_address fromAddress,
+        t.fee,t.actual_number actualNumber,t.number,
+        t.create_time createTime,t.audit_time auditTime,transaction_time transactionTime,
+        t.status,transaction_hash transactionHash,audit_reason auditReason,operator,remark,block_num blockNum
+        from transaction_bill t where user_id = #{userId,jdbcType=BIGINT} and coin=#{coinId}
+        order by ${sort} ${desc}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from transaction_bill
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.finance.api.entity.TransactionBill"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into transaction_bill (user_id, serial_number, `type`,
+        service_type, coin, `number`,
+        actual_number, fee, transaction_time,
+        `status`, from_address, to_address,
+        create_time, transaction_hash, remark,
+        balance, block_num, audit_time,
+        `operator`, audit_reason)
+        values (#{userId,jdbcType=BIGINT}, #{serialNumber,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+        #{serviceType,jdbcType=INTEGER}, #{coin,jdbcType=BIGINT}, #{number,jdbcType=DECIMAL},
+        #{actualNumber,jdbcType=DECIMAL}, #{fee,jdbcType=DECIMAL}, #{transactionTime,jdbcType=TIMESTAMP},
+        #{status,jdbcType=INTEGER}, #{fromAddress,jdbcType=VARCHAR}, #{toAddress,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{transactionHash,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{balance,jdbcType=DECIMAL}, #{blockNum,jdbcType=BIGINT}, #{auditTime,jdbcType=TIMESTAMP},
+        #{operator,jdbcType=VARCHAR}, #{auditReason,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.finance.api.entity.TransactionBill" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into transaction_bill
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="serialNumber != null">
+                serial_number,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="serviceType != null">
+                service_type,
+            </if>
+            <if test="coin != null">
+                coin,
+            </if>
+            <if test="number != null">
+                `number`,
+            </if>
+            <if test="actualNumber != null">
+                actual_number,
+            </if>
+            <if test="fee != null">
+                fee,
+            </if>
+            <if test="transactionTime != null">
+                transaction_time,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="fromAddress != null">
+                from_address,
+            </if>
+            <if test="toAddress != null">
+                to_address,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="transactionHash != null">
+                transaction_hash,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="balance != null">
+                balance,
+            </if>
+            <if test="blockNum != null">
+                block_num,
+            </if>
+            <if test="auditTime != null">
+                audit_time,
+            </if>
+            <if test="operator != null">
+                `operator`,
+            </if>
+            <if test="auditReason != null">
+                audit_reason,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="serialNumber != null">
+                #{serialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="serviceType != null">
+                #{serviceType,jdbcType=INTEGER},
+            </if>
+            <if test="coin != null">
+                #{coin,jdbcType=BIGINT},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=DECIMAL},
+            </if>
+            <if test="actualNumber != null">
+                #{actualNumber,jdbcType=DECIMAL},
+            </if>
+            <if test="fee != null">
+                #{fee,jdbcType=DECIMAL},
+            </if>
+            <if test="transactionTime != null">
+                #{transactionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="fromAddress != null">
+                #{fromAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="toAddress != null">
+                #{toAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionHash != null">
+                #{transactionHash,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="blockNum != null">
+                #{blockNum,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operator != null">
+                #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="auditReason != null">
+                #{auditReason,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.finance.api.entity.TransactionBill">
+        <!--@mbg.generated-->
+        update transaction_bill
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="serialNumber != null">
+                serial_number = #{serialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="serviceType != null">
+                service_type = #{serviceType,jdbcType=INTEGER},
+            </if>
+            <if test="coin != null">
+                coin = #{coin,jdbcType=BIGINT},
+            </if>
+            <if test="number != null">
+                `number` = #{number,jdbcType=DECIMAL},
+            </if>
+            <if test="actualNumber != null">
+                actual_number = #{actualNumber,jdbcType=DECIMAL},
+            </if>
+            <if test="fee != null">
+                fee = #{fee,jdbcType=DECIMAL},
+            </if>
+            <if test="transactionTime != null">
+                transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="fromAddress != null">
+                from_address = #{fromAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="toAddress != null">
+                to_address = #{toAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionHash != null">
+                transaction_hash = #{transactionHash,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="blockNum != null">
+                block_num = #{blockNum,jdbcType=BIGINT},
+            </if>
+            <if test="auditTime != null">
+                audit_time = #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operator != null">
+                `operator` = #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="auditReason != null">
+                audit_reason = #{auditReason,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.finance.api.entity.TransactionBill">
+        <!--@mbg.generated-->
+        update transaction_bill
+        set user_id = #{userId,jdbcType=BIGINT},
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=INTEGER},
+        service_type = #{serviceType,jdbcType=INTEGER},
+        coin = #{coin,jdbcType=BIGINT},
+        `number` = #{number,jdbcType=DECIMAL},
+        actual_number = #{actualNumber,jdbcType=DECIMAL},
+        fee = #{fee,jdbcType=DECIMAL},
+        transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
+        `status` = #{status,jdbcType=INTEGER},
+        from_address = #{fromAddress,jdbcType=VARCHAR},
+        to_address = #{toAddress,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        transaction_hash = #{transactionHash,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        balance = #{balance,jdbcType=DECIMAL},
+        block_num = #{blockNum,jdbcType=BIGINT},
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+        `operator` = #{operator,jdbcType=VARCHAR},
+        audit_reason = #{auditReason,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.DictI18nMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.DictI18n">
+        <!--@mbg.generated-->
+        <!--@Table dict_i18n-->
+        <result column="dict_id" jdbcType="BIGINT" property="dictId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="language" jdbcType="VARCHAR" property="language"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        dict_id, `name`, `language`
+    </sql>
+    <insert id="insertSelective" parameterType="com.bosha.common.api.entity.DictI18n">
+        <!--@mbg.generated-->
+        insert into dict_i18n
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dictId != null">
+                dict_id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="language != null">
+                `language`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dictId != null">
+                #{dictId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="language != null">
+                #{language,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into dict_i18n
+        (dict_id, `name`, `language`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.dictId,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.language,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+    <select id="getByDictIdAndLanguage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict_i18n where dict_id = #{dictId} and language = #{language}
+    </select>
+    <update id="update">
+        update dict_i18n
+        set name = #{name}
+        where dict_id = #{dictId}
+          and language = #{language}
+    </update>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict_i18n where dict_id = #{id}
+    </select>
+</mapper>

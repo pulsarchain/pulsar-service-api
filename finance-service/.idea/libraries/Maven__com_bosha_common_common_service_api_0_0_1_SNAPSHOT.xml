@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.bosha.common:common-service-api:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bosha/common/common-service-api/0.0.1-SNAPSHOT/common-service-api-0.0.1-20200613.042627-47.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bosha/common/common-service-api/0.0.1-SNAPSHOT/common-service-api-0.0.1-20200613.042627-47-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bosha/common/common-service-api/0.0.1-SNAPSHOT/common-service-api-0.0.1-20200613.042627-47-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

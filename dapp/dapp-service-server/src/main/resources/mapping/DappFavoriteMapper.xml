@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.DappFavoriteMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.DappFavorite">
+        <!--@mbg.generated-->
+        <!--@Table dapp_favorite-->
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="dapp_id" jdbcType="BIGINT" property="dappId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        address, dapp_id, create_time
+    </sql>
+    <insert id="insertSelective" parameterType="com.bosha.dapp.api.entity.DappFavorite">
+        <!--@mbg.generated-->
+        insert into dapp_favorite
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="dappId != null">
+                dapp_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="dappId != null">
+                #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into dapp_favorite
+        (address, dapp_id, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.dappId,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+    <select id="getByAddressAndDappId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_favorite where address = #{address} and dapp_id = #{dappId}
+    </select>
+    <delete id="deleteByAddressAndDappId">
+        delete
+        from dapp_favorite
+        where address = #{address}
+          and dapp_id = #{dappId}
+    </delete>
+    <select id="list" resultType="com.bosha.dapp.api.dto.DappListDto">
+        select d.id,
+               d.`name`,
+               logo,
+               d.category_id                                                       categoryId,
+               d.intro,
+               dc.name                                                             categoryName,
+               (select count(*) from dapp_use_record dur where dur.dapp_id = d.id) count
+        from dapp_favorite df
+                 left join dapp d on df.dapp_id = d.id
+                 left join dapp_categories dc on d.category_id = dc.id
+        where df.address = #{address}
+          and d.status = 3
+        order by df.create_time desc
+    </select>
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.ImRedReceiveMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.ImRedReceive">
+        <!--@mbg.generated-->
+        <!--@Table im_red_receive-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="im_red_id" jdbcType="BIGINT" property="imRedId"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, hash, address, im_red_id, money, `status`, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from im_red_receive
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectCountByRedId" resultMap="BaseResultMap">
+        select
+        count(*)
+        from im_red_receive where im_red_id = #{id}
+    </select>
+    <select id="selectByRedIdAndAddress" resultMap="BaseResultMap">
+        select * from im_red_receive where im_red_id = #{redId,jdbcType=BIGINT} and address =
+        #{address,jdbcType=VARCHAR}
+    </select>
+    <select id="selectPeopleAndNumber" resultType="com.bosha.user.api.dto.ImRedResDto">
+        SELECT COUNT(id) as number,SUM(amount) as amount FROM im_red_receive b WHERE b.im_red_id =
+        #{id}
+    </select>
+    <select id="selectByReadId" resultType="com.bosha.user.api.dto.ImRedSendMessage">
+        select address,money from im_red_receive where im_red_id = #{redId,jdbcType=BIGINT}
+    </select>
+    <select id="selectRedReceiveByReadId" resultType="com.bosha.user.api.dto.ImRedDetailReceiveDto">
+        select i.address userAddress,hash,u.nick_name nickName,u.head_img headImg,i.money,create_time createTime
+        from im_red_receive i left join user u on u.address = i.address
+        where i.im_red_id = #{redId,jdbcType=BIGINT}
+    </select>
+    <select id="findMyReceiveRed" resultType="com.bosha.user.api.dto.ImRedMyDetailDto">
+        select count(*) receiveNumber,sum(r.money) money,u.nick_name nickName,u.head_img headImg from im_red_receive r
+        left join user u on u.address = r.address
+        where r.address = #{userAddress}
+        <if test="endTime != null and startTime != null">
+            and create_time between #{startTime} and #{endTime}
+        </if>
+    </select>
+    <select id="findMyReceiveRedList" resultType="com.bosha.user.api.dto.ImMyReceiveRedDto">
+        select money,u.nick_name nickName,r.create_time createTime from im_red_receive r
+        left join user u on u.address = r.address
+        where r.address = #{userAddress} and r.status = 1
+        <if test="endTime != null and startTime != null">
+            and create_time between #{startTime} and #{endTime}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from im_red_receive
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImRedReceive"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_red_receive (hash, address, im_red_id,
+        money, `status`, create_time
+        )
+        values (#{hash,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{imRedId,jdbcType=BIGINT},
+        #{money,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImRedReceive"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_red_receive
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="imRedId != null">
+                im_red_id,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="imRedId != null">
+                #{imRedId,jdbcType=BIGINT},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.ImRedReceive">
+        <!--@mbg.generated-->
+        update im_red_receive
+        <set>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="imRedId != null">
+                im_red_id = #{imRedId,jdbcType=BIGINT},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.ImRedReceive">
+        <!--@mbg.generated-->
+        update im_red_receive
+        set hash = #{hash,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        im_red_id = #{imRedId,jdbcType=BIGINT},
+        money = #{money,jdbcType=DECIMAL},
+        `status` = #{status,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByRedId">
+        update im_red_receive set hash = #{hash,jdbcType=VARCHAR}, `status` = #{status,jdbcType=INTEGER}
+        where im_red_id=#{imRedId} and address=#{address}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_red_receive
+        (hash, address, im_red_id, money, `status`, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.hash,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, #{item.imRedId,jdbcType=BIGINT},
+            #{item.money,jdbcType=DECIMAL}, #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+</mapper>

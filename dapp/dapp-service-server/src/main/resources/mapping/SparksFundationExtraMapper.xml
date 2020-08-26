@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksFundationExtraMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksFundationExtra">
+        <!--@mbg.generated-->
+        <!--@Table sparks_fundation_extra-->
+        <result column="fundation_id" jdbcType="BIGINT" property="fundationId"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        fundation_id, url, `type`
+    </sql>
+    <insert id="insertSelective" parameterType="com.bosha.dapp.api.entity.SparksFundationExtra">
+        <!--@mbg.generated-->
+        insert into sparks_fundation_extra
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fundationId != null">
+                fundation_id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fundationId != null">
+                #{fundationId,jdbcType=BIGINT},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated-->
+        insert into sparks_fundation_extra
+        (fundation_id, url, `type`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.fundationId,jdbcType=BIGINT}, #{item.url,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+    <select id="certificates" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_fundation_extra where fundation_id = #{id} and type = 1
+    </select>
+    <select id="contracts" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_fundation_extra where fundation_id = #{id} and type = 2
+    </select>
+</mapper>

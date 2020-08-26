@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningVodConfirmMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningVodConfirm">
+        <!--@mbg.generated-->
+        <!--@Table live_mining_vod_confirm-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="live_mining_id" jdbcType="BIGINT" property="liveMiningId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="video_url" jdbcType="VARCHAR" property="videoUrl"/>
+        <result column="file_type" jdbcType="VARCHAR" property="fileType"/>
+        <result column="file_id" jdbcType="VARCHAR" property="fileId"/>
+        <result column="task_id" jdbcType="VARCHAR" property="taskId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, live_mining_id, `status`, video_url, file_type, file_id, task_id, create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_vod_confirm
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from live_mining_vod_confirm
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningVodConfirm" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod_confirm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="videoUrl != null">
+                video_url,
+            </if>
+            <if test="fileType != null">
+                file_type,
+            </if>
+            <if test="fileId != null">
+                file_id,
+            </if>
+            <if test="taskId != null">
+                task_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="videoUrl != null">
+                #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="fileType != null">
+                #{fileType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="taskId != null">
+                #{taskId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningVodConfirm">
+        <!--@mbg.generated-->
+        update live_mining_vod_confirm
+        <set>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="fileType != null">
+                file_type = #{fileType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                file_id = #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="taskId != null">
+                task_id = #{taskId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod_confirm
+        (live_mining_id, `status`, video_url, file_type, file_id, task_id, create_time, update_time
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.liveMiningId,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER}, #{item.videoUrl,jdbcType=VARCHAR},
+            #{item.fileType,jdbcType=VARCHAR}, #{item.fileId,jdbcType=VARCHAR}, #{item.taskId,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningVodConfirm" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod_confirm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            live_mining_id,
+            `status`,
+            video_url,
+            file_type,
+            file_id,
+            task_id,
+            create_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{liveMiningId,jdbcType=BIGINT},
+            #{status,jdbcType=INTEGER},
+            #{videoUrl,jdbcType=VARCHAR},
+            #{fileType,jdbcType=VARCHAR},
+            #{fileId,jdbcType=VARCHAR},
+            #{taskId,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            `status` = #{status,jdbcType=INTEGER},
+            video_url = #{videoUrl,jdbcType=VARCHAR},
+            file_type = #{fileType,jdbcType=VARCHAR},
+            file_id = #{fileId,jdbcType=VARCHAR},
+            task_id = #{taskId,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningVodConfirm" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod_confirm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="videoUrl != null">
+                video_url,
+            </if>
+            <if test="fileType != null">
+                file_type,
+            </if>
+            <if test="fileId != null">
+                file_id,
+            </if>
+            <if test="taskId != null">
+                task_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="videoUrl != null">
+                #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="fileType != null">
+                #{fileType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="taskId != null">
+                #{taskId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="fileType != null">
+                file_type = #{fileType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                file_id = #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="taskId != null">
+                task_id = #{taskId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="getByTaskId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_vod_confirm where task_id = #{taskId}
+    </select>
+</mapper>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningStreamMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningStream">
+        <!--@mbg.generated-->
+        <!--@Table live_mining_stream-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="live_mining_id" jdbcType="BIGINT" property="liveMiningId"/>
+        <result column="push_url" jdbcType="VARCHAR" property="pushUrl"/>
+        <result column="pull_url" jdbcType="VARCHAR" property="pullUrl"/>
+        <result column="stream_id" jdbcType="VARCHAR" property="streamId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, live_mining_id, push_url, pull_url, stream_id, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_stream
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from live_mining_stream
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningStream" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_stream
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="pushUrl != null">
+                push_url,
+            </if>
+            <if test="pullUrl != null">
+                pull_url,
+            </if>
+            <if test="streamId != null">
+                stream_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="pushUrl != null">
+                #{pushUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pullUrl != null">
+                #{pullUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="streamId != null">
+                #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningStream">
+        <!--@mbg.generated-->
+        update live_mining_stream
+        <set>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="pushUrl != null">
+                push_url = #{pushUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pullUrl != null">
+                pull_url = #{pullUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="streamId != null">
+                stream_id = #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_stream
+        (live_mining_id, push_url, pull_url, stream_id, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.liveMiningId,jdbcType=BIGINT}, #{item.pushUrl,jdbcType=VARCHAR}, #{item.pullUrl,jdbcType=VARCHAR},
+            #{item.streamId,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningStream" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_stream
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            live_mining_id,
+            push_url,
+            pull_url,
+            stream_id,
+            create_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{liveMiningId,jdbcType=BIGINT},
+            #{pushUrl,jdbcType=VARCHAR},
+            #{pullUrl,jdbcType=VARCHAR},
+            #{streamId,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            push_url = #{pushUrl,jdbcType=VARCHAR},
+            pull_url = #{pullUrl,jdbcType=VARCHAR},
+            stream_id = #{streamId,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningStream" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_stream
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="pushUrl != null">
+                push_url,
+            </if>
+            <if test="pullUrl != null">
+                pull_url,
+            </if>
+            <if test="streamId != null">
+                stream_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="pushUrl != null">
+                #{pushUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pullUrl != null">
+                #{pullUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="streamId != null">
+                #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="pushUrl != null">
+                push_url = #{pushUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pullUrl != null">
+                pull_url = #{pullUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="streamId != null">
+                stream_id = #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="getByLiveMiningId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_stream where live_mining_id = #{liveMiningId}
+    </select>
+</mapper>

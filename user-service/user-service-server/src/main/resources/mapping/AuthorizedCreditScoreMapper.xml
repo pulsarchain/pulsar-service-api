@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.AuthorizedCreditScoreMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.AuthorizedCreditScore">
+        <!--@mbg.generated-->
+        <!--@Table authorized_credit_score-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="from" jdbcType="VARCHAR" property="from"/>
+        <result column="to" jdbcType="VARCHAR" property="to"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `from`, `to`, `status`, hash, create_time, expire_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from authorized_credit_score
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from authorized_credit_score
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.user.api.entity.AuthorizedCreditScore" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into authorized_credit_score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="from != null">
+                `from`,
+            </if>
+            <if test="to != null">
+                `to`,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="expireTime != null">
+                expire_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="from != null">
+                #{from,jdbcType=VARCHAR},
+            </if>
+            <if test="to != null">
+                #{to,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expireTime != null">
+                #{expireTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.AuthorizedCreditScore">
+        <!--@mbg.generated-->
+        update authorized_credit_score
+        <set>
+            <if test="from != null">
+                `from` = #{from,jdbcType=VARCHAR},
+            </if>
+            <if test="to != null">
+                `to` = #{to,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expireTime != null">
+                expire_time = #{expireTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.AuthorizedCreditScore">
+        <!--@mbg.generated-->
+        update authorized_credit_score
+        set `from` = #{from,jdbcType=VARCHAR},
+        `to` = #{to,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=INTEGER},
+        hash = #{hash,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update authorized_credit_score
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="`from` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.from,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`to` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.to,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="hash = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.hash,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="expire_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.expireTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into authorized_credit_score
+        (`from`, `to`, `status`, hash, create_time, expire_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.from,jdbcType=VARCHAR}, #{item.to,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER},
+            #{item.hash,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.expireTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.user.api.entity.AuthorizedCreditScore" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into authorized_credit_score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            `from`,
+            `to`,
+            `status`,
+            hash,
+            create_time,
+            expire_time,
+            update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{from,jdbcType=VARCHAR},
+            #{to,jdbcType=VARCHAR},
+            #{status,jdbcType=INTEGER},
+            #{hash,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{expireTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            `from` = #{from,jdbcType=VARCHAR},
+            `to` = #{to,jdbcType=VARCHAR},
+            `status` = #{status,jdbcType=INTEGER},
+            hash = #{hash,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            expire_time = #{expireTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.user.api.entity.AuthorizedCreditScore" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into authorized_credit_score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="from != null">
+                `from`,
+            </if>
+            <if test="to != null">
+                `to`,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="expireTime != null">
+                expire_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="from != null">
+                #{from,jdbcType=VARCHAR},
+            </if>
+            <if test="to != null">
+                #{to,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expireTime != null">
+                #{expireTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="from != null">
+                `from` = #{from,jdbcType=VARCHAR},
+            </if>
+            <if test="to != null">
+                `to` = #{to,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expireTime != null">
+                expire_time = #{expireTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="getByFromAndTo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from authorized_credit_score
+        where `from`=#{from} and `to` = #{to}
+        limit 1
+    </select>
+</mapper>

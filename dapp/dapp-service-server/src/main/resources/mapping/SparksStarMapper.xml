@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksStarMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksStar">
+        <!--@mbg.generated-->
+        <!--@Table sparks_star-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="total" jdbcType="DECIMAL" property="total"/>
+        <result column="per_month" jdbcType="DECIMAL" property="perMonth"/>
+        <result column="year" jdbcType="INTEGER" property="year"/>
+        <result column="story" jdbcType="VARCHAR" property="story"/>
+        <result column="wish" jdbcType="VARCHAR" property="wish"/>
+        <result column="video_url" jdbcType="VARCHAR" property="videoUrl"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <collection property="imgs" ofType="java.lang.String" column="id" javaType="java.util.ArrayList"
+                    select="com.bosha.dapp.server.mapper.SparksStarImgMapper.imgs"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, `name`, `type`, `status`, total, per_month, `year`, story, wish, video_url,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_star
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sparks_star
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.SparksStar"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_star
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="perMonth != null">
+                per_month,
+            </if>
+            <if test="year != null">
+                `year`,
+            </if>
+            <if test="story != null">
+                story,
+            </if>
+            <if test="wish != null">
+                wish,
+            </if>
+            <if test="videoUrl != null">
+                video_url,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="total != null">
+                #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="perMonth != null">
+                #{perMonth,jdbcType=DECIMAL},
+            </if>
+            <if test="year != null">
+                #{year,jdbcType=INTEGER},
+            </if>
+            <if test="story != null">
+                #{story,jdbcType=VARCHAR},
+            </if>
+            <if test="wish != null">
+                #{wish,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksStar">
+        <!--@mbg.generated-->
+        update sparks_star
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="total != null">
+                total = #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="perMonth != null">
+                per_month = #{perMonth,jdbcType=DECIMAL},
+            </if>
+            <if test="year != null">
+                `year` = #{year,jdbcType=INTEGER},
+            </if>
+            <if test="story != null">
+                story = #{story,jdbcType=VARCHAR},
+            </if>
+            <if test="wish != null">
+                wish = #{wish,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sparks_star
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.type != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`status` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.status != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="total = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.total != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.total,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="per_month = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.perMonth != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.perMonth,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`year` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.year != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.year,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="story = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.story != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.story,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="wish = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.wish != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.wish,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="video_url = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.videoUrl != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.videoUrl,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_star
+        (address, `name`, `type`, `status`, total, per_month, `year`, story, wish, video_url,
+        create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER},
+            #{item.status,jdbcType=INTEGER}, #{item.total,jdbcType=DECIMAL}, #{item.perMonth,jdbcType=DECIMAL},
+            #{item.year,jdbcType=INTEGER}, #{item.story,jdbcType=VARCHAR}, #{item.wish,jdbcType=VARCHAR},
+            #{item.videoUrl,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+    <select id="list" resultType="com.bosha.dapp.api.dto.SparksStarListDto">
+        select ss.id,
+        (select url from sparks_star_img where sparks_star_id = ss.id limit 1) img,
+        ss.name,
+        ss.type,
+        ss.total totalNeed,
+        ss.per_month perMonth,
+        ss.year,
+        ss.create_time createTime
+        from sparks_star ss
+        where ss.status = 3
+        <if test="query.type != null">
+            and ss.type = #{query.type}
+        </if>
+        <if test="query.address != null and query.address != ''">
+            and ss.address = #{query.address}
+        </if>
+        order by create_time desc
+    </select>
+    <select id="myList" resultType="com.bosha.dapp.api.dto.SparksStarListDto">
+        select ss.id,
+               (select url from sparks_star_img where sparks_star_id = ss.id limit 1) img,
+               ss.name,
+               ss.type,
+               ss.total                                                               totalNeed,
+               ss.per_month                                                           perMonth,
+               ss.year,
+               ss.create_time                                                         createTime
+        from sparks_star ss
+        where ss.address = #{address}
+        order by create_time desc
+    </select>
+    <select id="getByAddressAndType" resultType="com.bosha.dapp.api.dto.SparksStarListDto">
+        select ss.id,
+        (select url from sparks_star_img where sparks_star_id = ss.id limit 1) img,
+        ss.name,
+        ss.type,
+        ss.total totalNeed,
+        ss.per_month perMonth,
+        ss.year,
+        ss.create_time createTime
+        from sparks_star ss
+        where ss.address = #{address}
+        and ss.type = #{type}
+        <if test="status != null and status.size() != 0">
+            and ss.status in
+            <foreach collection="status" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        order by ss.create_time desc
+        limit 1
+    </select>
+    <select id="joinTypes" resultType="java.lang.Integer">
+        select ss.type
+        from sparks_star ss
+        where ss.address = #{address}
+          and ss.status in (3, 4)
+        group by ss.type
+    </select>
+    <select id="getByType" resultType="com.bosha.dapp.api.dto.SparksStarListDto">
+        select ss.id,
+               (select url from sparks_star_img where sparks_star_id = ss.id limit 1) img,
+               ss.name,
+               ss.type,
+               ss.total                                                               totalNeed,
+               ss.per_month                                                           perMonth,
+               ss.year,
+               ss.create_time                                                         createTime
+        from sparks_star ss
+        where ss.type = #{type}
+          and ss.status in (3, 4)
+        order by ss.create_time desc
+        limit 1
+    </select>
+    <select id="countSuccess" resultType="int">
+        select count(*)
+        from sparks_star
+        where status in (3, 4)
+    </select>
+</mapper>

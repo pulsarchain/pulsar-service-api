@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.VersionMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.Version">
+    <!--@mbg.generated-->
+    <!--@Table version-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="tips" jdbcType="VARCHAR" property="tips" />
+    <result column="download" jdbcType="VARCHAR" property="download" />
+    <result column="os" jdbcType="INTEGER" property="os" />
+    <result column="update_type" jdbcType="INTEGER" property="updateType" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit" jdbcType="INTEGER" property="audit" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, version, tips, download, os, update_type, `status`, `audit`, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from version
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from version
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.Version" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into version (version, tips, download, 
+      os, update_type, `status`, 
+      `audit`, create_time, update_time
+      )
+    values (#{version,jdbcType=VARCHAR}, #{tips,jdbcType=VARCHAR}, #{download,jdbcType=VARCHAR}, 
+      #{os,jdbcType=INTEGER}, #{updateType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{audit,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.Version" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into version
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="version != null">
+        version,
+      </if>
+      <if test="tips != null">
+        tips,
+      </if>
+      <if test="download != null">
+        download,
+      </if>
+      <if test="os != null">
+        os,
+      </if>
+      <if test="updateType != null">
+        update_type,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="audit != null">
+        `audit`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="tips != null">
+        #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="download != null">
+        #{download,jdbcType=VARCHAR},
+      </if>
+      <if test="os != null">
+        #{os,jdbcType=INTEGER},
+      </if>
+      <if test="updateType != null">
+        #{updateType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="audit != null">
+        #{audit,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.Version">
+    <!--@mbg.generated-->
+    update version
+    <set>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="tips != null">
+        tips = #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="download != null">
+        download = #{download,jdbcType=VARCHAR},
+      </if>
+      <if test="os != null">
+        os = #{os,jdbcType=INTEGER},
+      </if>
+      <if test="updateType != null">
+        update_type = #{updateType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="audit != null">
+        `audit` = #{audit,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.common.api.entity.Version">
+    <!--@mbg.generated-->
+    update version
+    set version = #{version,jdbcType=VARCHAR},
+      tips = #{tips,jdbcType=VARCHAR},
+      download = #{download,jdbcType=VARCHAR},
+      os = #{os,jdbcType=INTEGER},
+      update_type = #{updateType,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      `audit` = #{audit,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from version
+        order by create_time desc
+    </select>
+    <select id="getMax" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from version
+        where os = #{os}
+        and status = 1
+        order by create_time desc
+        limit 1
+    </select>
+    <select id="getByVersionAndOs" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from version
+        where version = #{version}
+        and os = #{os}
+    </select>
+</mapper>

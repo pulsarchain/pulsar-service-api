@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.finance.server.mapper.CoinBalanceMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.finance.api.entity.CoinBalance">
+    <!--@mbg.generated-->
+    <!--@Table coin_balance-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="coin_id" jdbcType="BIGINT" property="coinId" />
+    <result column="chain_balance" jdbcType="DECIMAL" property="chainBalance" />
+    <result column="platform_balance" jdbcType="DECIMAL" property="platformBalance" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, coin_id, chain_balance, platform_balance
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from coin_balance
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="findCoinBalanceList" resultType="com.bosha.finance.api.dto.response.CoinBalanceListDto">
+      select b.id,b.chain_balance chainBalance,b.platform_balance platformBalance ,c.en_name coinName
+      from coin_balance b left join coin c on c.id = b.coin_id
+    </select>
+  <select id="selectByCoinId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from coin_balance where coin_id = #{coinId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from coin_balance
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.finance.api.entity.CoinBalance" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into coin_balance (coin_id, chain_balance, platform_balance
+      )
+    values (#{coinId,jdbcType=BIGINT}, #{chainBalance,jdbcType=DECIMAL}, #{platformBalance,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.finance.api.entity.CoinBalance" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into coin_balance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coinId != null">
+        coin_id,
+      </if>
+      <if test="chainBalance != null">
+        chain_balance,
+      </if>
+      <if test="platformBalance != null">
+        platform_balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coinId != null">
+        #{coinId,jdbcType=BIGINT},
+      </if>
+      <if test="chainBalance != null">
+        #{chainBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="platformBalance != null">
+        #{platformBalance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.finance.api.entity.CoinBalance">
+    <!--@mbg.generated-->
+    update coin_balance
+    <set>
+      <if test="coinId != null">
+        coin_id = #{coinId,jdbcType=BIGINT},
+      </if>
+      <if test="chainBalance != null">
+        chain_balance = #{chainBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="platformBalance != null">
+        platform_balance = #{platformBalance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.finance.api.entity.CoinBalance">
+    <!--@mbg.generated-->
+    update coin_balance
+    set coin_id = #{coinId,jdbcType=BIGINT},
+      chain_balance = #{chainBalance,jdbcType=DECIMAL},
+      platform_balance = #{platformBalance,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updatePlatformBalance">
+    update coin_balance set
+    platform_balance = platform_balance - #{money,jdbcType=DECIMAL}
+    where coin_id = #{coinId,jdbcType=BIGINT}
+  </update>
+
+  <update id="addPlatformBalance">
+    update coin_balance set
+    platform_balance = platform_balance + #{money,jdbcType=DECIMAL}
+    where coin_id = #{coinId,jdbcType=BIGINT}
+  </update>
+</mapper>

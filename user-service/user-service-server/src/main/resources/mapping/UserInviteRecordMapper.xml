@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.UserInviteRecordMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.UserInviteRecord">
+        <!--@mbg.generated-->
+        <!--@Table user_invite_record-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="user_address" jdbcType="VARCHAR" property="userAddress"/>
+        <result column="be_invite_user_id" jdbcType="BIGINT" property="beInviteUserId"/>
+        <result column="be_invite_user_address" jdbcType="VARCHAR" property="beInviteUserAddress"/>
+        <result column="coin_id" jdbcType="BIGINT" property="coinId"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="be_invite_user_ip" jdbcType="VARCHAR" property="beInviteUserIp"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="contract_address" jdbcType="VARCHAR" property="contractAddress"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, user_address, be_invite_user_id, be_invite_user_address, coin_id, amount,
+        hash, be_invite_user_ip, create_time, contract_address
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_invite_record
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from user_invite_record
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.UserInviteRecord"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_invite_record (user_id, user_address, be_invite_user_id,
+        be_invite_user_address, coin_id, amount,
+        hash, be_invite_user_ip, create_time,
+        contract_address)
+        values (#{userId,jdbcType=BIGINT}, #{userAddress,jdbcType=VARCHAR}, #{beInviteUserId,jdbcType=BIGINT},
+        #{beInviteUserAddress,jdbcType=VARCHAR}, #{coinId,jdbcType=BIGINT}, #{amount,jdbcType=DECIMAL},
+        #{hash,jdbcType=VARCHAR}, #{beInviteUserIp,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{contractAddress,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.user.api.entity.UserInviteRecord" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_invite_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userAddress != null">
+                user_address,
+            </if>
+            <if test="beInviteUserId != null">
+                be_invite_user_id,
+            </if>
+            <if test="beInviteUserAddress != null">
+                be_invite_user_address,
+            </if>
+            <if test="coinId != null">
+                coin_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="beInviteUserIp != null">
+                be_invite_user_ip,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="contractAddress != null">
+                contract_address,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="userAddress != null">
+                #{userAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="beInviteUserId != null">
+                #{beInviteUserId,jdbcType=BIGINT},
+            </if>
+            <if test="beInviteUserAddress != null">
+                #{beInviteUserAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="coinId != null">
+                #{coinId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="beInviteUserIp != null">
+                #{beInviteUserIp,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contractAddress != null">
+                #{contractAddress,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.UserInviteRecord">
+        <!--@mbg.generated-->
+        update user_invite_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="userAddress != null">
+                user_address = #{userAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="beInviteUserId != null">
+                be_invite_user_id = #{beInviteUserId,jdbcType=BIGINT},
+            </if>
+            <if test="beInviteUserAddress != null">
+                be_invite_user_address = #{beInviteUserAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="coinId != null">
+                coin_id = #{coinId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="beInviteUserIp != null">
+                be_invite_user_ip = #{beInviteUserIp,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="contractAddress != null">
+                contract_address = #{contractAddress,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.UserInviteRecord">
+        <!--@mbg.generated-->
+        update user_invite_record
+        set user_id = #{userId,jdbcType=BIGINT},
+        user_address = #{userAddress,jdbcType=VARCHAR},
+        be_invite_user_id = #{beInviteUserId,jdbcType=BIGINT},
+        be_invite_user_address = #{beInviteUserAddress,jdbcType=VARCHAR},
+        coin_id = #{coinId,jdbcType=BIGINT},
+        amount = #{amount,jdbcType=DECIMAL},
+        hash = #{hash,jdbcType=VARCHAR},
+        be_invite_user_ip = #{beInviteUserIp,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        contract_address = #{contractAddress,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="inviteCount" resultType="com.bosha.user.api.dto.UserInviteInfoDto">
+        SELECT (
+                   SELECT IFNULL(sum(amount), 0)
+                   FROM user_invite_record
+                   WHERE user_id = #{userId}
+                     AND create_time BETWEEN DATE_FORMAT(CURDATE(), '%Y-%m-%d %H:%i:%s')
+                       AND #{now}
+               )                                                                                 dayTotal,
+               (
+                   SELECT IFNULL(sum(amount), 0)
+                   FROM user_invite_record
+                   WHERE user_id = #{userId}
+                     AND DATE_FORMAT(create_time, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+               )                                                                                 monthTotal,
+               (SELECT count(*) FROM user_invite_record WHERE user_id = #{userId})               inviteTotal,
+               (SELECT ifnull(sum(amount), 0) FROM user_invite_record WHERE user_id = #{userId}) rewardTotal
+    </select>
+    <select id="beInviteCount" resultType="int">
+        select count(*)
+        from user_invite_record
+        where be_invite_user_address = #{address}
+    </select>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_invite_record where user_id = #{userId}
+        order by create_time desc
+    </select>
+    <select id="count" resultType="int">
+        select count(id)
+        from user_invite_record
+        where user_address = #{address}
+    </select>
+    <select id="countByIp" resultType="int">
+        select count(*)
+        from user_invite_record
+        where be_invite_user_ip = #{ip}
+          and create_time between #{startTIme} and #{endTime}
+    </select>
+
+</mapper>

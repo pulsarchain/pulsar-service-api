@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.AuthenticationMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.Authentication">
+    <!--@mbg.generated-->
+    <!--@Table authentication-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="identity_signature" jdbcType="VARCHAR" property="identitySignature" />
+    <result column="id_name" jdbcType="VARCHAR" property="idName" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="id_img_front" jdbcType="VARCHAR" property="idImgFront" />
+    <result column="id_img_back" jdbcType="VARCHAR" property="idImgBack" />
+    <result column="passport" jdbcType="VARCHAR" property="passport" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="org_brief" jdbcType="VARCHAR" property="orgBrief" />
+    <result column="org_license" jdbcType="VARCHAR" property="orgLicense" />
+    <result column="gov_name" jdbcType="VARCHAR" property="govName" />
+    <result column="gov_area" jdbcType="INTEGER" property="govArea" />
+    <result column="gov_area_name" jdbcType="VARCHAR" property="govAreaName" />
+    <result column="gov_brief" jdbcType="VARCHAR" property="govBrief" />
+    <result column="gov_license" jdbcType="VARCHAR" property="govLicense" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, address, `type`, `status`, identity_signature, id_name, id_no, id_img_front, 
+    id_img_back, passport, org_name, org_code, org_brief, org_license, gov_name, gov_area, 
+    gov_area_name, gov_brief, gov_license, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from authentication
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from authentication
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.Authentication" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into authentication
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        address,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="identitySignature != null">
+        identity_signature,
+      </if>
+      <if test="idName != null">
+        id_name,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="idImgFront != null">
+        id_img_front,
+      </if>
+      <if test="idImgBack != null">
+        id_img_back,
+      </if>
+      <if test="passport != null">
+        passport,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="orgBrief != null">
+        org_brief,
+      </if>
+      <if test="orgLicense != null">
+        org_license,
+      </if>
+      <if test="govName != null">
+        gov_name,
+      </if>
+      <if test="govArea != null">
+        gov_area,
+      </if>
+      <if test="govAreaName != null">
+        gov_area_name,
+      </if>
+      <if test="govBrief != null">
+        gov_brief,
+      </if>
+      <if test="govLicense != null">
+        gov_license,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="identitySignature != null">
+        #{identitySignature,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgFront != null">
+        #{idImgFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgBack != null">
+        #{idImgBack,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null">
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBrief != null">
+        #{orgBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLicense != null">
+        #{orgLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="govName != null">
+        #{govName,jdbcType=VARCHAR},
+      </if>
+      <if test="govArea != null">
+        #{govArea,jdbcType=INTEGER},
+      </if>
+      <if test="govAreaName != null">
+        #{govAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="govBrief != null">
+        #{govBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="govLicense != null">
+        #{govLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.Authentication">
+    <!--@mbg.generated-->
+    update authentication
+    <set>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="identitySignature != null">
+        identity_signature = #{identitySignature,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        id_name = #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgFront != null">
+        id_img_front = #{idImgFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgBack != null">
+        id_img_back = #{idImgBack,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null">
+        passport = #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBrief != null">
+        org_brief = #{orgBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLicense != null">
+        org_license = #{orgLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="govName != null">
+        gov_name = #{govName,jdbcType=VARCHAR},
+      </if>
+      <if test="govArea != null">
+        gov_area = #{govArea,jdbcType=INTEGER},
+      </if>
+      <if test="govAreaName != null">
+        gov_area_name = #{govAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="govBrief != null">
+        gov_brief = #{govBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="govLicense != null">
+        gov_license = #{govLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.Authentication">
+    <!--@mbg.generated-->
+    update authentication
+    set address = #{address,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      identity_signature = #{identitySignature,jdbcType=VARCHAR},
+      id_name = #{idName,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_img_front = #{idImgFront,jdbcType=VARCHAR},
+      id_img_back = #{idImgBack,jdbcType=VARCHAR},
+      passport = #{passport,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      org_brief = #{orgBrief,jdbcType=VARCHAR},
+      org_license = #{orgLicense,jdbcType=VARCHAR},
+      gov_name = #{govName,jdbcType=VARCHAR},
+      gov_area = #{govArea,jdbcType=INTEGER},
+      gov_area_name = #{govAreaName,jdbcType=VARCHAR},
+      gov_brief = #{govBrief,jdbcType=VARCHAR},
+      gov_license = #{govLicense,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update authentication
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="identity_signature = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.identitySignature,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="id_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.idName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="id_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.idNo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="id_img_front = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.idImgFront,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="id_img_back = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.idImgBack,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="passport = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.passport,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="org_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orgName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="org_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orgCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="org_brief = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orgBrief,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="org_license = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.orgLicense,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="gov_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.govName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="gov_area = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.govArea,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="gov_area_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.govAreaName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="gov_brief = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.govBrief,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="gov_license = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.govLicense,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into authentication
+    (address, `type`, `status`, identity_signature, id_name, id_no, id_img_front, id_img_back, 
+      passport, org_name, org_code, org_brief, org_license, gov_name, gov_area, gov_area_name, 
+      gov_brief, gov_license, create_time, update_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.address,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, #{item.status,jdbcType=INTEGER}, 
+        #{item.identitySignature,jdbcType=VARCHAR}, #{item.idName,jdbcType=VARCHAR}, #{item.idNo,jdbcType=VARCHAR}, 
+        #{item.idImgFront,jdbcType=VARCHAR}, #{item.idImgBack,jdbcType=VARCHAR}, #{item.passport,jdbcType=VARCHAR}, 
+        #{item.orgName,jdbcType=VARCHAR}, #{item.orgCode,jdbcType=VARCHAR}, #{item.orgBrief,jdbcType=VARCHAR}, 
+        #{item.orgLicense,jdbcType=VARCHAR}, #{item.govName,jdbcType=VARCHAR}, #{item.govArea,jdbcType=INTEGER}, 
+        #{item.govAreaName,jdbcType=VARCHAR}, #{item.govBrief,jdbcType=VARCHAR}, #{item.govLicense,jdbcType=VARCHAR}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.Authentication" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into authentication
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      address,
+      `type`,
+      `status`,
+      identity_signature,
+      id_name,
+      id_no,
+      id_img_front,
+      id_img_back,
+      passport,
+      org_name,
+      org_code,
+      org_brief,
+      org_license,
+      gov_name,
+      gov_area,
+      gov_area_name,
+      gov_brief,
+      gov_license,
+      create_time,
+      update_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{address,jdbcType=VARCHAR},
+      #{type,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+      #{identitySignature,jdbcType=VARCHAR},
+      #{idName,jdbcType=VARCHAR},
+      #{idNo,jdbcType=VARCHAR},
+      #{idImgFront,jdbcType=VARCHAR},
+      #{idImgBack,jdbcType=VARCHAR},
+      #{passport,jdbcType=VARCHAR},
+      #{orgName,jdbcType=VARCHAR},
+      #{orgCode,jdbcType=VARCHAR},
+      #{orgBrief,jdbcType=VARCHAR},
+      #{orgLicense,jdbcType=VARCHAR},
+      #{govName,jdbcType=VARCHAR},
+      #{govArea,jdbcType=INTEGER},
+      #{govAreaName,jdbcType=VARCHAR},
+      #{govBrief,jdbcType=VARCHAR},
+      #{govLicense,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      address = #{address,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      identity_signature = #{identitySignature,jdbcType=VARCHAR},
+      id_name = #{idName,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_img_front = #{idImgFront,jdbcType=VARCHAR},
+      id_img_back = #{idImgBack,jdbcType=VARCHAR},
+      passport = #{passport,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      org_brief = #{orgBrief,jdbcType=VARCHAR},
+      org_license = #{orgLicense,jdbcType=VARCHAR},
+      gov_name = #{govName,jdbcType=VARCHAR},
+      gov_area = #{govArea,jdbcType=INTEGER},
+      gov_area_name = #{govAreaName,jdbcType=VARCHAR},
+      gov_brief = #{govBrief,jdbcType=VARCHAR},
+      gov_license = #{govLicense,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.Authentication" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into authentication
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="identitySignature != null">
+        identity_signature,
+      </if>
+      <if test="idName != null">
+        id_name,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="idImgFront != null">
+        id_img_front,
+      </if>
+      <if test="idImgBack != null">
+        id_img_back,
+      </if>
+      <if test="passport != null">
+        passport,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="orgBrief != null">
+        org_brief,
+      </if>
+      <if test="orgLicense != null">
+        org_license,
+      </if>
+      <if test="govName != null">
+        gov_name,
+      </if>
+      <if test="govArea != null">
+        gov_area,
+      </if>
+      <if test="govAreaName != null">
+        gov_area_name,
+      </if>
+      <if test="govBrief != null">
+        gov_brief,
+      </if>
+      <if test="govLicense != null">
+        gov_license,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="identitySignature != null">
+        #{identitySignature,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgFront != null">
+        #{idImgFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgBack != null">
+        #{idImgBack,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null">
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBrief != null">
+        #{orgBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLicense != null">
+        #{orgLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="govName != null">
+        #{govName,jdbcType=VARCHAR},
+      </if>
+      <if test="govArea != null">
+        #{govArea,jdbcType=INTEGER},
+      </if>
+      <if test="govAreaName != null">
+        #{govAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="govBrief != null">
+        #{govBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="govLicense != null">
+        #{govLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="identitySignature != null">
+        identity_signature = #{identitySignature,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        id_name = #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgFront != null">
+        id_img_front = #{idImgFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idImgBack != null">
+        id_img_back = #{idImgBack,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null">
+        passport = #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBrief != null">
+        org_brief = #{orgBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLicense != null">
+        org_license = #{orgLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="govName != null">
+        gov_name = #{govName,jdbcType=VARCHAR},
+      </if>
+      <if test="govArea != null">
+        gov_area = #{govArea,jdbcType=INTEGER},
+      </if>
+      <if test="govAreaName != null">
+        gov_area_name = #{govAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="govBrief != null">
+        gov_brief = #{govBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="govLicense != null">
+        gov_license = #{govLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from authentication where address = #{address}
+    </select>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from authentication
+        where 1= 1
+        <if test="address != null and address != ''">
+            and address like concat('%',#{address},'%')
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="type != null">
+            and type = #{type}
+        </if>
+        order by create_time desc
+    </select>
+</mapper>

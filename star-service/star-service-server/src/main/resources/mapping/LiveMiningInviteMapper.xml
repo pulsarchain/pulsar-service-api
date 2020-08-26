@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningInviteMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningInvite">
+        <!--@mbg.generated-->
+        <!--@Table live_mining_invite-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="star_id" jdbcType="BIGINT" property="starId"/>
+        <result column="live_mining_id" jdbcType="BIGINT" property="liveMiningId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, star_id, live_mining_id, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_invite
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from live_mining_invite
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningInvite" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_invite
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="starId != null">
+                star_id,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="starId != null">
+                #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningInvite">
+        <!--@mbg.generated-->
+        update live_mining_invite
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="starId != null">
+                star_id = #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_invite
+        (address, star_id, live_mining_id, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.starId,jdbcType=BIGINT}, #{item.liveMiningId,jdbcType=BIGINT},
+            #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningInvite" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_invite
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            address,
+            star_id,
+            live_mining_id,
+            create_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{address,jdbcType=VARCHAR},
+            #{starId,jdbcType=BIGINT},
+            #{liveMiningId,jdbcType=BIGINT},
+            #{createTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            address = #{address,jdbcType=VARCHAR},
+            star_id = #{starId,jdbcType=BIGINT},
+            live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningInvite" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_invite
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="starId != null">
+                star_id,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="starId != null">
+                #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="starId != null">
+                star_id = #{starId,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="isAccept" resultType="int">
+        select count(*) from live_mining_invite lmi where address = #{address} and live_mining_id = #{liveMiningId}
+    </select>
+
+</mapper>

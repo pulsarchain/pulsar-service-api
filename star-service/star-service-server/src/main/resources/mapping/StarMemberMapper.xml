@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.StarMemberMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.StarMember">
+        <!--@mbg.generated-->
+        <!--@Table star_member-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="star_id" jdbcType="INTEGER" property="starId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="recommend_address" jdbcType="VARCHAR" property="recommendAddress"/>
+        <result column="init_level" jdbcType="INTEGER" property="initLevel"/>
+        <result column="current_level" jdbcType="INTEGER" property="currentLevel"/>
+        <result column="init_fee" jdbcType="DECIMAL" property="initFee"/>
+        <result column="init_hz" jdbcType="DECIMAL" property="initHz"/>
+        <result column="current_hz" jdbcType="DECIMAL" property="currentHz"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="system_address" jdbcType="VARCHAR" property="systemAddress"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, star_id, address, recommend_address, init_level, current_level, init_fee, init_hz,
+        current_hz, `status`, system_address, hash, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from star_member
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from star_member
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.StarMember"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into star_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="starId != null">
+                star_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="recommendAddress != null">
+                recommend_address,
+            </if>
+            <if test="initLevel != null">
+                init_level,
+            </if>
+            <if test="currentLevel != null">
+                current_level,
+            </if>
+            <if test="initFee != null">
+                init_fee,
+            </if>
+            <if test="initHz != null">
+                init_hz,
+            </if>
+            <if test="currentHz != null">
+                current_hz,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="systemAddress != null">
+                system_address,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="starId != null">
+                #{starId,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="recommendAddress != null">
+                #{recommendAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="initLevel != null">
+                #{initLevel,jdbcType=INTEGER},
+            </if>
+            <if test="currentLevel != null">
+                #{currentLevel,jdbcType=INTEGER},
+            </if>
+            <if test="initFee != null">
+                #{initFee,jdbcType=DECIMAL},
+            </if>
+            <if test="initHz != null">
+                #{initHz,jdbcType=DECIMAL},
+            </if>
+            <if test="currentHz != null">
+                #{currentHz,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="systemAddress != null">
+                #{systemAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.StarMember">
+        <!--@mbg.generated-->
+        update star_member
+        <set>
+            <if test="starId != null">
+                star_id = #{starId,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="recommendAddress != null">
+                recommend_address = #{recommendAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="initLevel != null">
+                init_level = #{initLevel,jdbcType=INTEGER},
+            </if>
+            <if test="currentLevel != null">
+                current_level = #{currentLevel,jdbcType=INTEGER},
+            </if>
+            <if test="initFee != null">
+                init_fee = #{initFee,jdbcType=DECIMAL},
+            </if>
+            <if test="initHz != null">
+                init_hz = #{initHz,jdbcType=DECIMAL},
+            </if>
+            <if test="currentHz != null">
+                current_hz = #{currentHz,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="systemAddress != null">
+                system_address = #{systemAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into star_member
+        (star_id, address, recommend_address, init_level, current_level, init_fee, init_hz,
+        current_hz, `status`, system_address, hash, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.starId,jdbcType=INTEGER}, #{item.address,jdbcType=VARCHAR},
+            #{item.recommendAddress,jdbcType=VARCHAR},
+            #{item.initLevel,jdbcType=INTEGER}, #{item.currentLevel,jdbcType=INTEGER}, #{item.initFee,jdbcType=DECIMAL},
+            #{item.initHz,jdbcType=DECIMAL}, #{item.currentHz,jdbcType=DECIMAL}, #{item.status,jdbcType=INTEGER},
+            #{item.systemAddress,jdbcType=VARCHAR}, #{item.hash,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from star_member
+        where address = #{address}
+    </select>
+    <select id="countDistribute" resultType="int">
+        select count(id)
+        from star_member sm
+        where sm.star_id = #{starId}
+          and sm.status = 1
+          and sm.id &lt; #{starMemberId}
+    </select>
+    <select id="listDistribute" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from star_member sm
+        where sm.star_id = #{starId}
+        and sm.id &lt; #{starMemberId}
+    </select>
+    <select id="countMember" resultType="int">
+        select count(id)
+        from star_member sm
+        where sm.star_id = #{starId}
+    </select>
+</mapper>

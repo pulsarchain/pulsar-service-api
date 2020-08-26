@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.pulsar.web3j:web3j-core:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/pulsar/web3j/web3j-core/1.0-SNAPSHOT/web3j-core-1.0-20200105.095450-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/pulsar/web3j/web3j-core/1.0-SNAPSHOT/web3j-core-1.0-20200105.095450-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/pulsar/web3j/web3j-core/1.0-SNAPSHOT/web3j-core-1.0-20200105.095450-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

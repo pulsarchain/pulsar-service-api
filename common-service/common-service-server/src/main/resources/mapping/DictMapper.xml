@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.DictMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.Dict">
+        <!--@mbg.generated-->
+        <!--@Table dict-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="key" jdbcType="VARCHAR" property="key"/>
+        <result column="value" jdbcType="VARCHAR" property="value"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="enable" jdbcType="INTEGER" property="enable"/>
+        <result column="reamrk" jdbcType="VARCHAR" property="reamrk"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <association property="parentName" javaType="java.lang.String" select="getParentName" column="parent_id">
+        </association>
+        <collection property="children" ofType="com.bosha.common.api.entity.Dict" column="id" fetchType="eager"
+                    javaType="java.util.ArrayList" select="getByParentId2">
+        </collection>
+        <collection property="i18ns" ofType="com.bosha.common.api.entity.DictI18n" column="id" select="com.bosha.common.server.mapper.DictI18nMapper.list" javaType="java.util.ArrayList"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `key`, `value`, `type`, parent_id, sort, `enable`, reamrk, `operator`, create_time
+    </sql>
+    <select id="getParentName" resultType="java.lang.String">
+        select `key`
+        from dict
+        where id = #{id}
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dict
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from dict
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.Dict"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="key != null">
+                `key`,
+            </if>
+            <if test="value != null">
+                `value`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="enable != null">
+                `enable`,
+            </if>
+            <if test="reamrk != null">
+                reamrk,
+            </if>
+            <if test="operator != null">
+                `operator`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="key != null">
+                #{key,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                #{enable,jdbcType=INTEGER},
+            </if>
+            <if test="reamrk != null">
+                #{reamrk,jdbcType=VARCHAR},
+            </if>
+            <if test="operator != null">
+                #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.Dict">
+        <!--@mbg.generated-->
+        update dict
+        <set>
+            <if test="key != null">
+                `key` = #{key,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                `value` = #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                `enable` = #{enable,jdbcType=INTEGER},
+            </if>
+            <if test="reamrk != null">
+                reamrk = #{reamrk,jdbcType=VARCHAR},
+            </if>
+            <if test="operator != null">
+                `operator` = #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict
+        where enable = 1
+        and parent_id != 0
+        <if test=' type != null and type !="" and type !="all"  '>
+            and type = #{type}
+        </if>
+        order by sort
+    </select>
+    <select id="getByParentId2" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict
+        where parent_id = #{id}
+        order by sort
+    </select>
+    <select id="getByParentId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict
+        where 1=1
+        <if test="enable == true ">
+            and enable = 1
+        </if>
+        and parent_id = #{id}
+        order by sort
+    </select>
+    <select id="getByTypeAndValue" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict where enable = 1
+        and type = #{name} and value = #{value}
+        limit 1
+    </select>
+
+    <select id="listParent" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict where parent_id = 0
+        <if test=' type != null and type !="" and type !="all"  '>
+            and type = #{type}
+        </if>
+        <if test="name != null and name != ''">
+            and `key` like concat('%',#{name},'%')
+        </if>
+        order by sort
+    </select>
+    <select id="getByType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict
+        where type = #{type} and parent_id = 0
+    </select>
+    <select id="projectCategories" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dict
+        where parent_id != 0
+        and type = 'project_category'
+        <if test="name != null and name != ''">
+            and `key` like concat('%',#{name},'%')
+        </if>
+        order by sort
+    </select>
+    <select id="getIdsByValue" resultType="java.lang.Long">
+        select id
+        from dict
+        where enable = 1
+          and `value` = #{value}
+        order by sort
+    </select>
+</mapper>

@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.LiveMiningVodMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.LiveMiningVod">
+        <!--@mbg.generated-->
+        <!--@Table live_mining_vod-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="live_mining_id" jdbcType="BIGINT" property="liveMiningId"/>
+        <result column="stream_id" jdbcType="VARCHAR" property="streamId"/>
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
+        <result column="t" jdbcType="BIGINT" property="t"/>
+        <result column="start_time" jdbcType="BIGINT" property="startTime"/>
+        <result column="end_time" jdbcType="BIGINT" property="endTime"/>
+        <result column="file_format" jdbcType="VARCHAR" property="fileFormat"/>
+        <result column="file_id" jdbcType="VARCHAR" property="fileId"/>
+        <result column="file_size" jdbcType="INTEGER" property="fileSize"/>
+        <result column="duration" jdbcType="BIGINT" property="duration"/>
+        <result column="stream_param" jdbcType="VARCHAR" property="streamParam"/>
+        <result column="video_url" jdbcType="VARCHAR" property="videoUrl"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, live_mining_id, stream_id, channel_id, sign, t, start_time, end_time, file_format,
+        file_id, file_size, duration, stream_param, video_url, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from live_mining_vod
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from live_mining_vod
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.LiveMiningVod"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="streamId != null">
+                stream_id,
+            </if>
+            <if test="channelId != null">
+                channel_id,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="t != null">
+                t,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="fileFormat != null">
+                file_format,
+            </if>
+            <if test="fileId != null">
+                file_id,
+            </if>
+            <if test="fileSize != null">
+                file_size,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+            <if test="streamParam != null">
+                stream_param,
+            </if>
+            <if test="videoUrl != null">
+                video_url,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="streamId != null">
+                #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null">
+                #{channelId,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="t != null">
+                #{t,jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=BIGINT},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=BIGINT},
+            </if>
+            <if test="fileFormat != null">
+                #{fileFormat,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                #{fileSize,jdbcType=INTEGER},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=BIGINT},
+            </if>
+            <if test="streamParam != null">
+                #{streamParam,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.LiveMiningVod">
+        <!--@mbg.generated-->
+        update live_mining_vod
+        <set>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="streamId != null">
+                stream_id = #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null">
+                channel_id = #{channelId,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="t != null">
+                t = #{t,jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=BIGINT},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=BIGINT},
+            </if>
+            <if test="fileFormat != null">
+                file_format = #{fileFormat,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                file_id = #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                file_size = #{fileSize,jdbcType=INTEGER},
+            </if>
+            <if test="duration != null">
+                duration = #{duration,jdbcType=BIGINT},
+            </if>
+            <if test="streamParam != null">
+                stream_param = #{streamParam,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod
+        (live_mining_id, stream_id, channel_id, sign, t, start_time, end_time, file_format,
+        file_id, file_size, duration, stream_param, video_url, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.liveMiningId,jdbcType=BIGINT}, #{item.streamId,jdbcType=VARCHAR},
+            #{item.channelId,jdbcType=VARCHAR},
+            #{item.sign,jdbcType=VARCHAR}, #{item.t,jdbcType=BIGINT}, #{item.startTime,jdbcType=BIGINT},
+            #{item.endTime,jdbcType=BIGINT}, #{item.fileFormat,jdbcType=VARCHAR}, #{item.fileId,jdbcType=VARCHAR},
+            #{item.fileSize,jdbcType=INTEGER}, #{item.duration,jdbcType=BIGINT}, #{item.streamParam,jdbcType=VARCHAR},
+            #{item.videoUrl,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.LiveMiningVod"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            live_mining_id,
+            stream_id,
+            channel_id,
+            sign,
+            t,
+            start_time,
+            end_time,
+            file_format,
+            file_id,
+            file_size,
+            duration,
+            stream_param,
+            video_url,
+            create_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{liveMiningId,jdbcType=BIGINT},
+            #{streamId,jdbcType=VARCHAR},
+            #{channelId,jdbcType=VARCHAR},
+            #{sign,jdbcType=VARCHAR},
+            #{t,jdbcType=BIGINT},
+            #{startTime,jdbcType=BIGINT},
+            #{endTime,jdbcType=BIGINT},
+            #{fileFormat,jdbcType=VARCHAR},
+            #{fileId,jdbcType=VARCHAR},
+            #{fileSize,jdbcType=INTEGER},
+            #{duration,jdbcType=BIGINT},
+            #{streamParam,jdbcType=VARCHAR},
+            #{videoUrl,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            stream_id = #{streamId,jdbcType=VARCHAR},
+            channel_id = #{channelId,jdbcType=VARCHAR},
+            sign = #{sign,jdbcType=VARCHAR},
+            t = #{t,jdbcType=BIGINT},
+            start_time = #{startTime,jdbcType=BIGINT},
+            end_time = #{endTime,jdbcType=BIGINT},
+            file_format = #{fileFormat,jdbcType=VARCHAR},
+            file_id = #{fileId,jdbcType=VARCHAR},
+            file_size = #{fileSize,jdbcType=INTEGER},
+            duration = #{duration,jdbcType=BIGINT},
+            stream_param = #{streamParam,jdbcType=VARCHAR},
+            video_url = #{videoUrl,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.star.api.entity.LiveMiningVod" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into live_mining_vod
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id,
+            </if>
+            <if test="streamId != null">
+                stream_id,
+            </if>
+            <if test="channelId != null">
+                channel_id,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="t != null">
+                t,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="fileFormat != null">
+                file_format,
+            </if>
+            <if test="fileId != null">
+                file_id,
+            </if>
+            <if test="fileSize != null">
+                file_size,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+            <if test="streamParam != null">
+                stream_param,
+            </if>
+            <if test="videoUrl != null">
+                video_url,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="streamId != null">
+                #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null">
+                #{channelId,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="t != null">
+                #{t,jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=BIGINT},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=BIGINT},
+            </if>
+            <if test="fileFormat != null">
+                #{fileFormat,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                #{fileSize,jdbcType=INTEGER},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=BIGINT},
+            </if>
+            <if test="streamParam != null">
+                #{streamParam,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="liveMiningId != null">
+                live_mining_id = #{liveMiningId,jdbcType=BIGINT},
+            </if>
+            <if test="streamId != null">
+                stream_id = #{streamId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null">
+                channel_id = #{channelId,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="t != null">
+                t = #{t,jdbcType=BIGINT},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=BIGINT},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=BIGINT},
+            </if>
+            <if test="fileFormat != null">
+                file_format = #{fileFormat,jdbcType=VARCHAR},
+            </if>
+            <if test="fileId != null">
+                file_id = #{fileId,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                file_size = #{fileSize,jdbcType=INTEGER},
+            </if>
+            <if test="duration != null">
+                duration = #{duration,jdbcType=BIGINT},
+            </if>
+            <if test="streamParam != null">
+                stream_param = #{streamParam,jdbcType=VARCHAR},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="listFileId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from live_mining_vod
+        where live_mining_id = #{liveMiningId}
+    </select>
+</mapper>

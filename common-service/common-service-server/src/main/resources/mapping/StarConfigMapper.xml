@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.StarConfigMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.StarConfig">
+    <!--@mbg.generated-->
+    <!--@Table star_config-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="fixed_star" jdbcType="INTEGER" property="fixedStar" />
+    <result column="giant_star" jdbcType="INTEGER" property="giantStar" />
+    <result column="super_giant_star" jdbcType="INTEGER" property="superGiantStar" />
+    <result column="initial_value" jdbcType="DECIMAL" property="initialValue" />
+    <result column="coin_id" jdbcType="BIGINT" property="coinId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, fixed_star, giant_star, super_giant_star, initial_value, coin_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from star_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from star_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.StarConfig" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into star_config (fixed_star, giant_star, super_giant_star, 
+      initial_value, coin_id)
+    values (#{fixedStar,jdbcType=INTEGER}, #{giantStar,jdbcType=INTEGER}, #{superGiantStar,jdbcType=INTEGER}, 
+      #{initialValue,jdbcType=DECIMAL}, #{coinId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.StarConfig" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into star_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fixedStar != null">
+        fixed_star,
+      </if>
+      <if test="giantStar != null">
+        giant_star,
+      </if>
+      <if test="superGiantStar != null">
+        super_giant_star,
+      </if>
+      <if test="initialValue != null">
+        initial_value,
+      </if>
+      <if test="coinId != null">
+        coin_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fixedStar != null">
+        #{fixedStar,jdbcType=INTEGER},
+      </if>
+      <if test="giantStar != null">
+        #{giantStar,jdbcType=INTEGER},
+      </if>
+      <if test="superGiantStar != null">
+        #{superGiantStar,jdbcType=INTEGER},
+      </if>
+      <if test="initialValue != null">
+        #{initialValue,jdbcType=DECIMAL},
+      </if>
+      <if test="coinId != null">
+        #{coinId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.StarConfig">
+    <!--@mbg.generated-->
+    update star_config
+    <set>
+      <if test="fixedStar != null">
+        fixed_star = #{fixedStar,jdbcType=INTEGER},
+      </if>
+      <if test="giantStar != null">
+        giant_star = #{giantStar,jdbcType=INTEGER},
+      </if>
+      <if test="superGiantStar != null">
+        super_giant_star = #{superGiantStar,jdbcType=INTEGER},
+      </if>
+      <if test="initialValue != null">
+        initial_value = #{initialValue,jdbcType=DECIMAL},
+      </if>
+      <if test="coinId != null">
+        coin_id = #{coinId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.common.api.entity.StarConfig">
+    <!--@mbg.generated-->
+    update star_config
+    set fixed_star = #{fixedStar,jdbcType=INTEGER},
+      giant_star = #{giantStar,jdbcType=INTEGER},
+      super_giant_star = #{superGiantStar,jdbcType=INTEGER},
+      initial_value = #{initialValue,jdbcType=DECIMAL},
+      coin_id = #{coinId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="getByCoinId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from star_config
+        where 1=1
+        <choose>
+            <when test="coinId != null">
+                and coin_id = #{coinId}
+            </when>
+            <otherwise>
+                and coin_id = (select id from coin where symbol_name = 'PUL')
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

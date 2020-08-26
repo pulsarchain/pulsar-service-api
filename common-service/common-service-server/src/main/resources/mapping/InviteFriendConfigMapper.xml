@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.InviteFriendConfigMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.InviteFriendConfig">
+        <!--@mbg.generated-->
+        <!--@Table invite_friend_config-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="reward" jdbcType="DECIMAL" property="reward"/>
+        <result column="reward_per_day" jdbcType="DECIMAL" property="rewardPerDay"/>
+        <result column="reward_per_month" jdbcType="DECIMAL" property="rewardPerMonth"/>
+        <result column="coin_id" jdbcType="BIGINT" property="coinId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, reward, reward_per_day, reward_per_month, coin_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from invite_friend_config
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from invite_friend_config
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.InviteFriendConfig"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into invite_friend_config (reward, reward_per_day, reward_per_month,
+        coin_id)
+        values (#{reward,jdbcType=DECIMAL}, #{rewardPerDay,jdbcType=DECIMAL}, #{rewardPerMonth,jdbcType=DECIMAL},
+        #{coinId,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.common.api.entity.InviteFriendConfig" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into invite_friend_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reward != null">
+                reward,
+            </if>
+            <if test="rewardPerDay != null">
+                reward_per_day,
+            </if>
+            <if test="rewardPerMonth != null">
+                reward_per_month,
+            </if>
+            <if test="coinId != null">
+                coin_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reward != null">
+                #{reward,jdbcType=DECIMAL},
+            </if>
+            <if test="rewardPerDay != null">
+                #{rewardPerDay,jdbcType=DECIMAL},
+            </if>
+            <if test="rewardPerMonth != null">
+                #{rewardPerMonth,jdbcType=DECIMAL},
+            </if>
+            <if test="coinId != null">
+                #{coinId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.InviteFriendConfig">
+        <!--@mbg.generated-->
+        update invite_friend_config
+        <set>
+            <if test="reward != null">
+                reward = #{reward,jdbcType=DECIMAL},
+            </if>
+            <if test="rewardPerDay != null">
+                reward_per_day = #{rewardPerDay,jdbcType=DECIMAL},
+            </if>
+            <if test="rewardPerMonth != null">
+                reward_per_month = #{rewardPerMonth,jdbcType=DECIMAL},
+            </if>
+            <if test="coinId != null">
+                coin_id = #{coinId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.common.api.entity.InviteFriendConfig">
+        <!--@mbg.generated-->
+        update invite_friend_config
+        set reward = #{reward,jdbcType=DECIMAL},
+        reward_per_day = #{rewardPerDay,jdbcType=DECIMAL},
+        reward_per_month = #{rewardPerMonth,jdbcType=DECIMAL},
+        coin_id = #{coinId,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getByCoinId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from invite_friend_config
+        where 1=1
+        <choose>
+            <when test="coinId != null">
+                and coin_id = #{coinId}
+            </when>
+            <otherwise>
+                and coin_id = (select id from coin where symbol_name = 'PUL')
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.ImRedMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.ImRed">
+    <!--@mbg.generated-->
+    <!--@Table im_red-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_address" jdbcType="VARCHAR" property="userAddress" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="currency" jdbcType="TINYINT" property="currency" />
+    <result column="group_id" jdbcType="BIGINT" property="groupId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="notify" jdbcType="INTEGER" property="notify" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="seconds" jdbcType="BIGINT" property="seconds" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_address, `type`, `number`, money, currency, group_id, remark, `status`, 
+    `notify`, create_time, `seconds`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from im_red
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from im_red
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImRed" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into im_red (user_address, `type`, `number`, 
+      money, currency, group_id, 
+      remark, `status`, `notify`, 
+      create_time, `seconds`)
+    values (#{userAddress,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{currency,jdbcType=TINYINT}, #{groupId,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{notify,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{seconds,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImRed" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into im_red
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="notify != null">
+        `notify`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="seconds != null">
+        `seconds`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=TINYINT},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="notify != null">
+        #{notify,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seconds != null">
+        #{seconds,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.ImRed">
+    <!--@mbg.generated-->
+    update im_red
+    <set>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=TINYINT},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="notify != null">
+        `notify` = #{notify,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seconds != null">
+        `seconds` = #{seconds,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.ImRed">
+    <!--@mbg.generated-->
+    update im_red
+    set user_address = #{userAddress,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `number` = #{number,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      currency = #{currency,jdbcType=TINYINT},
+      group_id = #{groupId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      `notify` = #{notify,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      `seconds` = #{seconds,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into im_red
+    (user_address, `type`, `number`, money, currency, group_id, remark, `status`, `notify`, 
+      create_time, `seconds`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userAddress,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, #{item.number,jdbcType=INTEGER}, 
+        #{item.money,jdbcType=DECIMAL}, #{item.currency,jdbcType=TINYINT}, #{item.groupId,jdbcType=BIGINT}, 
+        #{item.remark,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.notify,jdbcType=INTEGER}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.seconds,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+    <select id="selectById" resultType="com.bosha.user.api.dto.ImRedDetailDto">
+        select i.id ,i.user_address userAddress,
+        i.type,i.number,i.money,u.nick_name nickName,u.head_img headImg,i.group_id groupId,i.remark,i.status,
+        if(i.user_address=#{userAddress},2,1) as pay,(select count(*) from im_red_receive where im_red_id=#{id})
+        joinNumber
+        from im_red i left join user u on u.address = i.user_address where i.id=#{id}
+    </select>
+    <select id="selectByStatus" resultType="java.lang.Integer">
+        select count(*) from im_red where status = 2 and user_address = #{userAddress}
+    </select>
+    <select id="findMySendRed" resultType="com.bosha.user.api.dto.ImRedMyDetailDto">
+        select r.user_address userAddress,u.nick_name nickName,u.head_img headImg,count(*) sendNumber,sum(money) money
+        from im_red r
+        left join user u on r.user_address = u.address
+        where r.user_address = #{userAddress} and r.status = 2
+        <if test="endTime != null and startTime != null">
+            and create_time between #{startTime} and #{endTime}
+        </if>
+    </select>
+    <select id="findMySendRedList" resultType="com.bosha.user.api.dto.ImMySendRedDto">
+        select r.id,number,money,
+        (select count(*) from im_red_receive i where i.im_red_id = r.id) joinNumber,r.type,r.create_time createTime
+        from im_red r
+        left join user u on r.user_address = u.address
+        where r.user_address = #{userAddress} and r.status = 2
+        <if test="endTime != null and startTime != null">
+            and create_time between #{startTime} and #{endTime}
+        </if>
+    </select>
+    <select id="findMyPaidRed" resultType="com.bosha.user.api.dto.ImRedList">
+       select id,user_address userAddress,type,number,money,group_id groupId,remark
+       from
+    </select>
+    <select id="selectByNotPayStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from im_red
+        where status = 2
+    </select>
+</mapper>

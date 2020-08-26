@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.common.server.mapper.PushConfigMapper">
+  <resultMap id="BaseResultMap" type="com.bosha.common.api.entity.PushConfig">
+    <!--@mbg.generated-->
+    <!--@Table push_config-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="all" jdbcType="INTEGER" property="all" />
+    <result column="notice" jdbcType="INTEGER" property="notice" />
+    <result column="system" jdbcType="INTEGER" property="system" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="chain" jdbcType="INTEGER" property="chain" />
+    <result column="star" jdbcType="INTEGER" property="star" />
+    <result column="dapp" jdbcType="INTEGER" property="dapp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, address, `all`, notice, `system`, price, `chain`, star, dapp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from push_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from push_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.PushConfig" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into push_config (user_id, address, `all`, 
+      notice, `system`, price, 
+      `chain`, star, dapp)
+    values (#{userId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{all,jdbcType=INTEGER}, 
+      #{notice,jdbcType=INTEGER}, #{system,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{chain,jdbcType=INTEGER}, #{star,jdbcType=INTEGER}, #{dapp,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.common.api.entity.PushConfig" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into push_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="all != null">
+        `all`,
+      </if>
+      <if test="notice != null">
+        notice,
+      </if>
+      <if test="system != null">
+        `system`,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="chain != null">
+        `chain`,
+      </if>
+      <if test="star != null">
+        star,
+      </if>
+      <if test="dapp != null">
+        dapp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="all != null">
+        #{all,jdbcType=INTEGER},
+      </if>
+      <if test="notice != null">
+        #{notice,jdbcType=INTEGER},
+      </if>
+      <if test="system != null">
+        #{system,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="chain != null">
+        #{chain,jdbcType=INTEGER},
+      </if>
+      <if test="star != null">
+        #{star,jdbcType=INTEGER},
+      </if>
+      <if test="dapp != null">
+        #{dapp,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bosha.common.api.entity.PushConfig">
+    <!--@mbg.generated-->
+    update push_config
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="all != null">
+        `all` = #{all,jdbcType=INTEGER},
+      </if>
+      <if test="notice != null">
+        notice = #{notice,jdbcType=INTEGER},
+      </if>
+      <if test="system != null">
+        `system` = #{system,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="chain != null">
+        `chain` = #{chain,jdbcType=INTEGER},
+      </if>
+      <if test="star != null">
+        star = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="dapp != null">
+        dapp = #{dapp,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bosha.common.api.entity.PushConfig">
+    <!--@mbg.generated-->
+    update push_config
+    set user_id = #{userId,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      `all` = #{all,jdbcType=INTEGER},
+      notice = #{notice,jdbcType=INTEGER},
+      `system` = #{system,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      `chain` = #{chain,jdbcType=INTEGER},
+      star = #{star,jdbcType=INTEGER},
+      dapp = #{dapp,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from push_config where address = #{address}
+    </select>
+    <select id="listUserAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from push_config
+        limit #{page},#{size}
+    </select>
+    <select id="countUser" resultType="int">
+        select count(user_id)
+        from push_config
+    </select>
+    <select id="syncData" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from push_config
+        where address is null
+    </select>
+    <update id="updateByAddressSelective" parameterType="com.bosha.common.api.entity.PushConfig">
+        <!--@mbg.generated-->
+        update push_config
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="all != null">
+                `all` = #{all,jdbcType=INTEGER},
+            </if>
+            <if test="notice != null">
+                notice = #{notice,jdbcType=INTEGER},
+            </if>
+            <if test="system != null">
+                `system` = #{system,jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=INTEGER},
+            </if>
+            <if test="chain != null">
+                `chain` = #{chain,jdbcType=INTEGER},
+            </if>
+            <if test="star != null">
+                star = #{star,jdbcType=INTEGER},
+            </if>
+            <if test="dapp != null">
+                dapp = #{dapp,jdbcType=INTEGER},
+            </if>
+        </set>
+        where address = #{address,jdbcType=VARCHAR}
+    </update>
+</mapper>

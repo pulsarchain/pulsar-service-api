@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.DappReportMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.DappReport">
+        <!--@mbg.generated-->
+        <!--@Table dapp_report-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="dapp_id" jdbcType="BIGINT" property="dappId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="report_categroy_id" jdbcType="BIGINT" property="reportCategroyId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="public_end_time" jdbcType="TIMESTAMP" property="publicEndTime"/>
+        <result column="dapp_modify_end_time" jdbcType="TIMESTAMP" property="dappModifyEndTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <collection property="picList" ofType="java.lang.String" column="id"
+                    select="com.bosha.dapp.server.mapper.DappReportPicMapper.list"/>
+    </resultMap>
+    <resultMap id="DETAIL" type="com.bosha.dapp.api.dto.DappReportDetailDto" extends="BaseResultMap">
+        <result column="dappLogo" property="dappLogo"/>
+        <result column="dappName" property="dappName"/>
+        <result column="dappIntro" property="dappIntro"/>
+        <result column="dappTypeName" property="dappTypeName"/>
+        <result column="reportTypeName" property="reportTypeName"/>
+        <result column="trueAddressNum" property="trueAddressNum"/>
+        <result column="falseAddressNum" property="falseAddressNum"/>
+
+    </resultMap>
+    <resultMap id="PublicList" type="com.bosha.dapp.api.dto.DappReportPublicListDto">
+        <result column="reportId" property="reportId"/>
+        <result column="nickName" property="nickName"/>
+        <result column="address" property="address"/>
+        <result column="headImg" property="headImg"/>
+        <result column="reportTime" property="reportTime"/>
+        <result column="dappName" property="dappName"/>
+        <result column="reportContent" property="reportContent"/>
+        <result column="trueNum" property="trueNum"/>
+        <result column="falseNum" property="falseNum"/>
+        <result column="select" property="select"/>
+        <result column="publicEndTime" property="publicEndTime"/>
+        <collection property="reportPicList" ofType="java.lang.String"
+                    select="com.bosha.dapp.server.mapper.DappReportPicMapper.list" column="reportId"/>
+    </resultMap>
+    <resultMap id="PublicDetail" type="com.bosha.dapp.api.dto.DappReportPublicListDto" extends="PublicList">
+        <association property="dapp" javaType="com.bosha.dapp.api.entity.Dapp" column="dapp_id"
+                     select="com.bosha.dapp.server.mapper.DappMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, dapp_id, address, content, report_categroy_id, `status`, public_end_time, dapp_modify_end_time,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_report
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from dapp_report
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.dapp.api.entity.DappReport"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dapp_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dappId != null">
+                dapp_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="reportCategroyId != null">
+                report_categroy_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="publicEndTime != null">
+                public_end_time,
+            </if>
+            <if test="dappModifyEndTime != null">
+                dapp_modify_end_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dappId != null">
+                #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="reportCategroyId != null">
+                #{reportCategroyId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="publicEndTime != null">
+                #{publicEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dappModifyEndTime != null">
+                #{dappModifyEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.DappReport">
+        <!--@mbg.generated-->
+        update dapp_report
+        <set>
+            <if test="dappId != null">
+                dapp_id = #{dappId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="reportCategroyId != null">
+                report_categroy_id = #{reportCategroyId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="publicEndTime != null">
+                public_end_time = #{publicEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dappModifyEndTime != null">
+                dapp_modify_end_time = #{dappModifyEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dapp_report
+        (dapp_id, address, content, report_categroy_id, `status`, public_end_time, dapp_modify_end_time,
+        create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.dappId,jdbcType=BIGINT}, #{item.address,jdbcType=VARCHAR}, #{item.content,jdbcType=VARCHAR},
+            #{item.reportCategroyId,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER},
+            #{item.publicEndTime,jdbcType=TIMESTAMP},
+            #{item.dappModifyEndTime,jdbcType=TIMESTAMP}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="countByDappId" resultType="int">
+        select count(*)
+        from dapp_report
+        where dapp_id = #{id}
+    </select>
+    <select id="listMyRecord" resultType="com.bosha.dapp.api.dto.MyDappReportListDto">
+        select d.logo, d.name, d.intro, dr.id reportId, dr.create_time reportTime, dc.name categoryName
+        from dapp_report dr
+                 left join dapp d on dr.dapp_id = d.id
+                 left join dapp_categories dc on d.category_id = dc.id
+        where dr.address = #{address}
+        order by dr.create_time desc
+    </select>
+    <select id="detail" resultMap="DETAIL">
+        select dr.*,
+               d.logo                         dappLogo,
+               d.name                         dappName,
+               d.intro                        dappIntro,
+               dc.name                        dappTypeName,
+               concat(f.name, '--', drc.name) reportTypeName,
+               (select count(*)
+                from dapp_report_vote drv
+                where drv.dapp_report_id = dr.id
+                  and drv.type = 0)           falseAddressNum,
+               (select count(*)
+                from dapp_report_vote drv
+                where drv.dapp_report_id = dr.id
+                  and drv.type = 1)           trueAddressNum
+        from dapp_report dr
+                 left join dapp_report_category drc on drc.id = dr.report_categroy_id
+                 left join dapp_report_category f on f.id = drc.parent_id
+                 left join dapp d on dr.dapp_id = d.id
+                 left join dapp_categories dc on d.category_id = dc.id
+        where dr.id = #{id}
+    </select>
+    <select id="publicList" resultMap="PublicList">
+        select u.nick_name                        nickName,
+               u.head_img                         headImg,
+               dr.create_time                     reportTime,
+               d.name                             dappName,
+               dr.content                         reportContent,
+               dr.public_end_time                 publicEndTime,
+               dr.id                              reportId,
+               dr.address,
+               (select count(*)
+                from dapp_report_vote drv
+                where drv.dapp_report_id = dr.id
+                  and drv.type = 0)               falseNum,
+               (select count(*)
+                from dapp_report_vote drv
+                where drv.dapp_report_id = dr.id
+                  and drv.type = 1)               trueNum,
+               (select drv.type
+                from dapp_report_vote drv
+                where drv.address = #{address}
+                  and drv.dapp_report_id = dr.id) `select`
+        from dapp_report dr
+                 left join user u on dr.address = u.address
+                 left join dapp d on dr.dapp_id = d.id
+        where dr.status = 0
+        order by dr.create_time desc
+    </select>
+    <select id="publicDetail" resultMap="PublicDetail">
+        select u.nick_name                        nickName,
+               u.head_img                         headImg,
+               dr.create_time                     reportTime,
+               d.name                             dappName,
+               dr.content                         reportContent,
+               dr.id                              reportId,
+               dr.dapp_id,
+               (select count(*)
+                from dapp_report_vote drv
+                where drv.dapp_report_id = dr.id
+                  and drv.type = 0)               falseNum,
+               (select count(*)
+                from dapp_report_vote drv
+                where drv.dapp_report_id = dr.id
+                  and drv.type = 1)               trueNum,
+               (select drv.type
+                from dapp_report_vote drv
+                where drv.address = #{address}
+                  and drv.dapp_report_id = dr.id) `select`
+        from dapp_report dr
+                 left join user u on dr.address = u.address
+                 left join dapp d on dr.dapp_id = d.id
+        where dr.id = #{id}
+          and dr.status = 0
+    </select>
+    <select id="publicDateJob" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_report
+        where status = 0
+        and create_time >=#{date}
+    </select>
+    <select id="modifyList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dapp_report
+        where status = 2
+        and dapp_modify_end_time >= #{date}
+    </select>
+    <select id="countExist" resultType="int">
+        select count(*)
+        from dapp_report
+        where address = #{address}
+        and dapp_id = #{id}
+    </select>
+</mapper>

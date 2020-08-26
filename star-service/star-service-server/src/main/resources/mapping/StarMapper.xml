@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.star.server.mapper.StarMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.star.api.entity.Star">
+        <!--@mbg.generated-->
+        <!--@Table star-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="slogan" jdbcType="VARCHAR" property="slogan"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="create_fee" jdbcType="VARCHAR" property="createFee"/>
+        <result column="total_hz" jdbcType="DECIMAL" property="totalHz"/>
+        <result column="charity_address" jdbcType="VARCHAR" property="charityAddress"/>
+        <result column="contract_address" jdbcType="VARCHAR" property="contractAddress"/>
+        <result column="system_address" jdbcType="VARCHAR" property="systemAddress"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, `name`, slogan, logo, create_fee, total_hz, charity_address, contract_address,
+        system_address, hash, `status`, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from star
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from star
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.star.api.entity.Star"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into star
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="slogan != null">
+                slogan,
+            </if>
+            <if test="logo != null">
+                logo,
+            </if>
+            <if test="createFee != null">
+                create_fee,
+            </if>
+            <if test="totalHz != null">
+                total_hz,
+            </if>
+            <if test="charityAddress != null">
+                charity_address,
+            </if>
+            <if test="contractAddress != null">
+                contract_address,
+            </if>
+            <if test="systemAddress != null">
+                system_address,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="slogan != null">
+                #{slogan,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="createFee != null">
+                #{createFee,jdbcType=VARCHAR},
+            </if>
+            <if test="totalHz != null">
+                #{totalHz,jdbcType=DECIMAL},
+            </if>
+            <if test="charityAddress != null">
+                #{charityAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="contractAddress != null">
+                #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="systemAddress != null">
+                #{systemAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.star.api.entity.Star">
+        <!--@mbg.generated-->
+        update star
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="slogan != null">
+                slogan = #{slogan,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="createFee != null">
+                create_fee = #{createFee,jdbcType=VARCHAR},
+            </if>
+            <if test="totalHz != null">
+                total_hz = #{totalHz,jdbcType=DECIMAL},
+            </if>
+            <if test="charityAddress != null">
+                charity_address = #{charityAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="contractAddress != null">
+                contract_address = #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="systemAddress != null">
+                system_address = #{systemAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into star
+        (address, `name`, slogan, logo, create_fee, total_hz, charity_address, contract_address,
+        system_address, hash, `status`, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.slogan,jdbcType=VARCHAR},
+            #{item.logo,jdbcType=VARCHAR}, #{item.createFee,jdbcType=VARCHAR}, #{item.totalHz,jdbcType=DECIMAL},
+            #{item.charityAddress,jdbcType=VARCHAR}, #{item.contractAddress,jdbcType=VARCHAR},
+            #{item.systemAddress,jdbcType=VARCHAR}, #{item.hash,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <resultMap extends="BaseResultMap" id="StarList" type="com.bosha.star.api.dto.web.StarListDto">
+        <result column="nickName" jdbcType="VARCHAR" property="nickName"/>
+        <result column="join" jdbcType="INTEGER" property="join"/>
+        <result column="starNum" jdbcType="INTEGER" property="starNum"/>
+        <result column="doubleStarNum" jdbcType="INTEGER" property="doubleStarNum"/>
+        <result column="greenManNum" jdbcType="INTEGER" property="greenManNum"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="DetailMap" type="com.bosha.star.api.dto.web.StarDetailDto">
+        <result column="nickName" jdbcType="VARCHAR" property="nickName"/>
+        <result column="join" jdbcType="INTEGER" property="join"/>
+        <result column="starNum" jdbcType="INTEGER" property="starNum"/>
+        <result column="doubleStarNum" jdbcType="INTEGER" property="doubleStarNum"/>
+        <result column="greenManNum" jdbcType="INTEGER" property="greenManNum"/>
+        <result column="myHz" jdbcType="DECIMAL" property="myHz"/>
+        <result column="myRecommendNum" jdbcType="INTEGER" property="myRecommendNum"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+    </resultMap>
+    <select flushCache="true" id="list" resultMap="StarList" useCache="false">
+        select id,
+        address,
+        `name`,
+        slogan,
+        logo,
+        create_fee,
+        charity_address,
+        contract_address,
+        `status`,
+        create_time,
+        ifnull(tmp.starNum, 0) starNum,
+        ifnull(tmp.doubleStarNum, 0) doubleStarNum,
+        ifnull(tmp.greenManNum, 0) greenManNum,
+        (ifnull(tmp.starNum, 0) + ifnull(tmp.doubleStarNum, 0) + ifnull(tmp.greenManNum, 0)) totalNum,
+        (select ifnull(sum(hz.current_hz), 0)
+        from star_member hz
+        where hz.star_id = s.id and hz.status = 1) total_hz,
+        (select ifnull(nick_name,'-') from user u where u.address = s.address) nickName,
+        (select j.`status` from star_member j where j.address = #{address} and j.star_id = s.id) `join`
+        from star s
+        left join (
+        select sm.star_id,
+        ifnull(sum(CASE `current_level` WHEN 1 THEN 1 ELSE 0 END), 0) starNum,
+        ifnull(sum(CASE `current_level` WHEN 2 THEN 1 ELSE 0 END), 0) doubleStarNum,
+        ifnull(sum(CASE `current_level` WHEN 3 THEN 1 ELSE 0 END), 0) greenManNum
+        from star_member sm
+        where sm.status = 1
+        group by sm.star_id
+        ) tmp on tmp.star_id = s.id
+        where s.status = 1
+        <if test="name != null and name !=''">
+            and s.name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        order by
+        <choose>
+            <when test="field != null and field =='starNum'.toString()">
+                totalNum
+            </when>
+            <otherwise>
+                total_hz
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="orderBy != null and orderBy =='asc'.toString()">
+                asc,id
+            </when>
+            <otherwise>
+                desc,id
+            </otherwise>
+        </choose>
+    </select>
+    <select flushCache="true" id="detail" resultMap="DetailMap" useCache="false">
+        select id,
+               address,
+               `name`,
+               slogan,
+               logo,
+               create_fee,
+               charity_address,
+               contract_address,
+               `status`,
+               create_time,
+               ifnull(tmp.starNum, 0)                                                                   starNum,
+               ifnull(tmp.doubleStarNum, 0)                                                             doubleStarNum,
+               ifnull(tmp.greenManNum, 0)                                                               greenManNum,
+               (ifnull(tmp.starNum, 0) + ifnull(tmp.doubleStarNum, 0) +
+                ifnull(tmp.greenManNum, 0))                                                             totalNum,
+               (select ifnull(count(c.id), 0)
+                from star_member c
+                where c.recommend_address = #{address}
+               )                                                                                        myRecommendNum,
+               (select ifnull(sum(hz.current_hz), 0)
+                from star_member hz
+                where hz.star_id = s.id
+                  and hz.status = 1)                                                                    total_hz,
+               (select ifnull(nick_name, '-')
+                from user u
+                where u.address = s.address)                                                            nickName,
+               (select ifnull(current_hz, 0) from star_member ss where ss.address = #{address})         myHz,
+               (select ifnull(current_level, 0)
+                from star_member ss
+                where ss.address = #{address})                                                          level,
+               (select j.`status` from star_member j where j.address = #{address} and j.star_id = s.id) `join`
+        from star s
+                 left join (
+            select sm.star_id,
+                   ifnull(sum(CASE `current_level` WHEN 1 THEN 1 ELSE 0 END), 0) starNum,
+                   ifnull(sum(CASE `current_level` WHEN 2 THEN 1 ELSE 0 END), 0) doubleStarNum,
+                   ifnull(sum(CASE `current_level` WHEN 3 THEN 1 ELSE 0 END), 0) greenManNum
+            from star_member sm
+            where sm.status = 1
+            group by sm.star_id
+        ) tmp on tmp.star_id = s.id
+        where s.id = #{id}
+    </select>
+    <select id="getByAddress" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from star where address = #{address}
+    </select>
+    <select id="myRecommend" resultType="com.bosha.star.api.dto.web.MyRecommendDto">
+        select u.nick_name      nickName,
+               u.address,
+               u.head_img       headImg,
+               sm.current_level level,
+               sm.create_time   joinTime,
+               sm.current_hz    currentHz,
+               sm.status        status
+        from star_member sm
+                 left join user u on sm.address = u.address
+        where sm.recommend_address = #{address}
+        order by sm.create_time desc
+    </select>
+    <select flushCache="true" id="my" resultMap="DetailMap" useCache="false">
+        select sm.current_hz                                                                        myHz,
+               sm.current_level                                                                     level,
+               sm.status                                                                            `join`,
+               s.id,
+               s.address,
+               s.`name`,
+               s.slogan,
+               s.logo,
+               s.create_fee,
+               s.charity_address,
+               s.contract_address,
+               s.`status`,
+               s.create_time,
+               ifnull(tmp.starNum, 0)                                                               starNum,
+               ifnull(tmp.doubleStarNum, 0)                                                         doubleStarNum,
+               ifnull(tmp.greenManNum, 0)                                                           greenManNum,
+               (ifnull(tmp.starNum, 0) + ifnull(tmp.doubleStarNum, 0) + ifnull(tmp.greenManNum, 0)) totalNum,
+               (select ifnull(count(c.id), 0)
+                from star_member c
+                where c.recommend_address = #{address}
+               )                                                                                    myRecommendNum,
+               (select ifnull(sum(hz.current_hz), 0)
+                from star_member hz
+                where hz.star_id = sm.star_id
+                  and hz.status = 1)                                                                total_hz,
+               (select ifnull(nick_name, '-') from user u where u.address = s.address)              nickName
+        from star_member sm
+                 left join star s on s.id = sm.star_id
+                 left join (
+            select d.star_id,
+                   ifnull(sum(CASE d.`current_level` WHEN 1 THEN 1 ELSE 0 END), 0) starNum,
+                   ifnull(sum(CASE d.`current_level` WHEN 2 THEN 1 ELSE 0 END), 0) doubleStarNum,
+                   ifnull(sum(CASE d.`current_level` WHEN 3 THEN 1 ELSE 0 END), 0) greenManNum
+            from star_member d
+            where d.status = 1
+            group by d.star_id
+        ) tmp on tmp.star_id = s.id
+        where sm.address = #{address}
+    </select>
+    <select id="getStarName" resultType="java.lang.String">
+        select name
+        from star
+        where id = #{id}
+    </select>
+</mapper>

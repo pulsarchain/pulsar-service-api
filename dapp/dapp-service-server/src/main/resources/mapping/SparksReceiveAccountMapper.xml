@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.dapp.server.mapper.SparksReceiveAccountMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.dapp.api.entity.SparksReceiveAccount">
+        <!--@mbg.generated-->
+        <!--@Table sparks_receive_account-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="wechat_name" jdbcType="VARCHAR" property="wechatName"/>
+        <result column="wechat_account" jdbcType="VARCHAR" property="wechatAccount"/>
+        <result column="wechat_qrcode" jdbcType="VARCHAR" property="wechatQrcode"/>
+        <result column="alipay_name" jdbcType="VARCHAR" property="alipayName"/>
+        <result column="alipay_account" jdbcType="VARCHAR" property="alipayAccount"/>
+        <result column="alipay_qrcode" jdbcType="VARCHAR" property="alipayQrcode"/>
+        <result column="bank_user_name" jdbcType="VARCHAR" property="bankUserName"/>
+        <result column="bank_no" jdbcType="BIGINT" property="bankNo"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, `type`, wechat_name, wechat_account, wechat_qrcode, alipay_name, alipay_account,
+        alipay_qrcode, bank_user_name, bank_no, bank_name, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_receive_account
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sparks_receive_account
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.dapp.api.entity.SparksReceiveAccount" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_receive_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="wechatName != null">
+                wechat_name,
+            </if>
+            <if test="wechatAccount != null">
+                wechat_account,
+            </if>
+            <if test="wechatQrcode != null">
+                wechat_qrcode,
+            </if>
+            <if test="alipayName != null">
+                alipay_name,
+            </if>
+            <if test="alipayAccount != null">
+                alipay_account,
+            </if>
+            <if test="alipayQrcode != null">
+                alipay_qrcode,
+            </if>
+            <if test="bankUserName != null">
+                bank_user_name,
+            </if>
+            <if test="bankNo != null">
+                bank_no,
+            </if>
+            <if test="bankName != null">
+                bank_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="wechatName != null">
+                #{wechatName,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatAccount != null">
+                #{wechatAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatQrcode != null">
+                #{wechatQrcode,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayName != null">
+                #{alipayName,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayAccount != null">
+                #{alipayAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayQrcode != null">
+                #{alipayQrcode,jdbcType=VARCHAR},
+            </if>
+            <if test="bankUserName != null">
+                #{bankUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="bankNo != null">
+                #{bankNo,jdbcType=BIGINT},
+            </if>
+            <if test="bankName != null">
+                #{bankName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.dapp.api.entity.SparksReceiveAccount">
+        <!--@mbg.generated-->
+        update sparks_receive_account
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="wechatName != null">
+                wechat_name = #{wechatName,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatAccount != null">
+                wechat_account = #{wechatAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatQrcode != null">
+                wechat_qrcode = #{wechatQrcode,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayName != null">
+                alipay_name = #{alipayName,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayAccount != null">
+                alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayQrcode != null">
+                alipay_qrcode = #{alipayQrcode,jdbcType=VARCHAR},
+            </if>
+            <if test="bankUserName != null">
+                bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="bankNo != null">
+                bank_no = #{bankNo,jdbcType=BIGINT},
+            </if>
+            <if test="bankName != null">
+                bank_name = #{bankName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update sparks_receive_account
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="address = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.address != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.type != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="wechat_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.wechatName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.wechatName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="wechat_account = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.wechatAccount != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.wechatAccount,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="wechat_qrcode = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.wechatQrcode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.wechatQrcode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="alipay_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.alipayName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.alipayName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="alipay_account = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.alipayAccount != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.alipayAccount,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="alipay_qrcode = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.alipayQrcode != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.alipayQrcode,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bank_user_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.bankUserName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.bankUserName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bank_no = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.bankNo != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.bankNo,jdbcType=BIGINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bank_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.bankName != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.bankName,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sparks_receive_account
+        (address, `type`, wechat_name, wechat_account, wechat_qrcode, alipay_name, alipay_account,
+        alipay_qrcode, bank_user_name, bank_no, bank_name, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, #{item.wechatName,jdbcType=VARCHAR},
+            #{item.wechatAccount,jdbcType=VARCHAR}, #{item.wechatQrcode,jdbcType=VARCHAR},
+            #{item.alipayName,jdbcType=VARCHAR}, #{item.alipayAccount,jdbcType=VARCHAR},
+            #{item.alipayQrcode,jdbcType=VARCHAR},
+            #{item.bankUserName,jdbcType=VARCHAR}, #{item.bankNo,jdbcType=BIGINT}, #{item.bankName,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="getByAddressAndType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_receive_account
+        where address = #{address} and type = #{type}
+    </select>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sparks_receive_account
+        where address = #{address}
+    </select>
+</mapper>

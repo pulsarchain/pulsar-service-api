@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.finance.server.mapper.ContractMiningDetailMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.finance.api.entity.ContractMiningDetail">
+        <!--@mbg.generated-->
+        <!--@Table contract_mining_detail-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="contract_address" jdbcType="VARCHAR" property="contractAddress"/>
+        <result column="hash" jdbcType="VARCHAR" property="hash"/>
+        <result column="service_type" jdbcType="INTEGER" property="serviceType"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="related_id" jdbcType="BIGINT" property="relatedId"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, address, contract_address, hash, service_type, remark, related_id, amount, `status`,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from contract_mining_detail
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from contract_mining_detail
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.finance.api.entity.ContractMiningDetail" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into contract_mining_detail (address, contract_address, hash,
+        service_type, remark, related_id,
+        amount, `status`, create_time,
+        update_time)
+        values (#{address,jdbcType=VARCHAR}, #{contractAddress,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR},
+        #{serviceType,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{relatedId,jdbcType=BIGINT},
+        #{amount,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.bosha.finance.api.entity.ContractMiningDetail" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into contract_mining_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                address,
+            </if>
+            <if test="contractAddress != null">
+                contract_address,
+            </if>
+            <if test="hash != null">
+                hash,
+            </if>
+            <if test="serviceType != null">
+                service_type,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="relatedId != null">
+                related_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="contractAddress != null">
+                #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceType != null">
+                #{serviceType,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="relatedId != null">
+                #{relatedId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.finance.api.entity.ContractMiningDetail">
+        <!--@mbg.generated-->
+        update contract_mining_detail
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="contractAddress != null">
+                contract_address = #{contractAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="hash != null">
+                hash = #{hash,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceType != null">
+                service_type = #{serviceType,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="relatedId != null">
+                related_id = #{relatedId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.finance.api.entity.ContractMiningDetail">
+        <!--@mbg.generated-->
+        update contract_mining_detail
+        set address = #{address,jdbcType=VARCHAR},
+        contract_address = #{contractAddress,jdbcType=VARCHAR},
+        hash = #{hash,jdbcType=VARCHAR},
+        service_type = #{serviceType,jdbcType=INTEGER},
+        remark = #{remark,jdbcType=VARCHAR},
+        related_id = #{relatedId,jdbcType=BIGINT},
+        amount = #{amount,jdbcType=DECIMAL},
+        `status` = #{status,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into contract_mining_detail
+        (address, contract_address, hash, service_type, remark, related_id, amount, `status`,
+        create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.address,jdbcType=VARCHAR}, #{item.contractAddress,jdbcType=VARCHAR}, #{item.hash,jdbcType=VARCHAR},
+            #{item.serviceType,jdbcType=INTEGER}, #{item.remark,jdbcType=VARCHAR}, #{item.relatedId,jdbcType=BIGINT},
+            #{item.amount,jdbcType=DECIMAL}, #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <select id="list" resultType="com.bosha.finance.api.dto.response.ContractMiningDetailListDto">
+        SELECT c.contract_address contractAddress,
+               c.hash,
+               c.service_type     serviceType,
+               c.remark,
+               c.amount,
+               c.create_time
+                                  createTime
+        FROM contract_mining_detail c
+        WHERE c.address = #{address,jdbcType=VARCHAR}
+          AND c.`status` = 1
+        order by c.create_time desc
+    </select>
+    <select id="total" resultType="java.math.BigDecimal">
+        select sum(c.amount)
+        from contract_mining_detail c
+        WHERE c.address = #{address,jdbcType=VARCHAR}
+          AND c.`status` = 1
+    </select>
+    <update id="batchUpdate">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update contract_mining_detail
+            <set>
+                <if test="item.address != null">
+                    address = #{item.address,jdbcType=VARCHAR},
+                </if>
+                <if test="item.contractAddress != null">
+                    contract_address = #{item.contractAddress,jdbcType=VARCHAR},
+                </if>
+                <if test="item.hash != null">
+                    hash = #{item.hash,jdbcType=VARCHAR},
+                </if>
+                <if test="item.serviceType != null">
+                    service_type = #{item.serviceType,jdbcType=INTEGER},
+                </if>
+                <if test="item.remark != null">
+                    remark = #{item.remark,jdbcType=VARCHAR},
+                </if>
+                <if test="item.relatedId != null">
+                    related_id = #{item.relatedId,jdbcType=BIGINT},
+                </if>
+                <if test="item.amount != null">
+                    amount = #{item.amount,jdbcType=DECIMAL},
+                </if>
+                <if test="status != null">
+                    `status` = #{status,jdbcType=INTEGER},
+                </if>
+                <if test="item.createTime != null">
+                    create_time = #{item.createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.updateTime != null">
+                    update_time = #{item.updateTime,jdbcType=TIMESTAMP},
+                </if>
+            </set>
+            where id = #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <select id="myEarnings" resultType="com.bosha.finance.api.dto.response.MyEarningsDto">
+        select (select ifnull(sum(cmd.amount), 0)
+                from contract_mining_detail cmd
+                where cmd.address = #{address}
+                  and cmd.status = 1
+                  and cmd.service_type in (12, 16))             star,
+
+               (select ifnull(sum(cmd.amount), 0)
+                from contract_mining_detail cmd
+                where cmd.address = #{address}
+                  and cmd.status = 1
+                  and cmd.service_type in (8, 9, 10, 11))       news,
+
+               (select ifnull(sum(cmd.amount), 0)
+                from contract_mining_detail cmd
+                where cmd.address = #{address}
+                  and cmd.status = 1
+                  and cmd.service_type in (17, 18, 19, 20, 21)) live
+
+    </select>
+</mapper>

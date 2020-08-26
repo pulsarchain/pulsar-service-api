@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bosha.user.server.mapper.ImGroupMemberMapper">
+    <resultMap id="BaseResultMap" type="com.bosha.user.api.entity.ImGroupMember">
+        <!--@mbg.generated-->
+        <!--@Table im_group_member-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="group_id" jdbcType="BIGINT" property="groupId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, group_id, address, nick_name, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from im_group_member
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByGroupIdAndAddress" resultType="com.bosha.user.api.entity.ImGroupMember">
+        select
+        <include refid="Base_Column_List"/>
+        from im_group_member
+        where group_id = #{groupId} and address=#{address}
+    </select>
+    <select id="selectByGroupId" resultType="com.bosha.user.api.dto.ImGroupMemberWebDto">
+        select
+        i.id,u.nick_name nickName,u.head_img headImg,i.address
+        from im_group_member i left join user u on u.address = i.address
+        where group_id = #{groupId} order by id asc
+    </select>
+    <select id="selectByAddress" resultType="com.bosha.user.api.dto.ImGroupListDto">
+        select u.group_name groupName,u.group_notice groupNotice,u.id,u.group_head groupHead,
+        (select count(*) from im_group_member m where m.group_id=i.group_id) as number
+        from im_group_member i left join im_group u on u.id = i.group_id
+        where i.address = #{address}
+    </select>
+    <select id="selectByCount" resultType="java.lang.Integer">
+        select count(*) from im_group_member where group_id = #{groupId}
+    </select>
+    <select id="selectNextAddress" resultType="com.bosha.user.api.entity.ImGroupMember">
+        select
+        <include refid="Base_Column_List"/>
+        from im_group_member where id > (select id from im_group_member where address=#{address} and group_id=#{groupId})
+        and group_id=#{groupId} order by id asc limit 1
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from im_group_member
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByGroupIdAndAddress">
+        delete from im_group_member where group_id = #{groupId} and address=#{address}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImGroupMember"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_group_member (group_id, address, nick_name,
+        create_time)
+        values (#{groupId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bosha.user.api.entity.ImGroupMember"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_group_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">
+                group_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">
+                #{groupId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bosha.user.api.entity.ImGroupMember">
+        <!--@mbg.generated-->
+        update im_group_member
+        <set>
+            <if test="groupId != null">
+                group_id = #{groupId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bosha.user.api.entity.ImGroupMember">
+        <!--@mbg.generated-->
+        update im_group_member
+        set group_id = #{groupId,jdbcType=BIGINT},
+        address = #{address,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into im_group_member
+        (group_id, address, nick_name, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.groupId,jdbcType=BIGINT}, #{item.address,jdbcType=VARCHAR}, #{item.nickName,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+</mapper>

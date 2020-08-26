@@ -1,0 +1,56 @@
+server:
+  port: 8001
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway-service
+  main.allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.3.237:8000
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-dataids: gateway-url.yml
+        refreshable-dataids: ${spring.cloud.nacos.config.shared-dataids}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+  cloud.loadbalancer.retry.enabled: false
+  mvc.favicon.enabled: false
+
+logging:
+  pattern:
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p}-%logger{16}:%L - %X{reqId} : %m%n'
+    console: '%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(%-25.25logger{16}){cyan}%clr( %L-[%X{reqId}]){faint}%clr(: %m%n){faint}'
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread.timeoutInMilliseconds: 10000
+          strategy: SEMAPHORE
+          semaphore.maxConcurrentRequests: 1000
+
+ribbon:
+  ServerListRefreshInterval: 3000
